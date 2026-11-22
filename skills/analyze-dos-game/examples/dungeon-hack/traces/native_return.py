@@ -1,4 +1,4 @@
-"""Verify a phase-one native return and the next call, including inline byte arguments."""
+"""Verify a phase-one native return and the byte or word literals passed to the next call."""
 import argparse
 import csv
 import hashlib
@@ -17,7 +17,9 @@ IMPORTS = {
     "graphics": ("init_graphics", 60, 280),
     "interface": ("init_interface", 64, 228),
     "wipe_window": ("wipe_window", 48, 336),
+    "create_program": ("create_program", 0, 520),
 }
+LITERAL_WIDTH = {0x1d: 1, 0x1e: 2}  # SHTC and INTC
 
 
 def check(condition, detail):
@@ -62,8 +64,25 @@ def sample(row, *fields):
     return tuple(int(row[field], 16) for field in fields)
 
 
+def call_fetch_offsets(code, resume_pc, incoming_count, import_offset, arguments):
+    prefix = struct.pack("<BBBH", 0x21, incoming_count, 0x20, import_offset)
+    check(code[resume_pc-2:resume_pc+3] == prefix, "Returning CALL and next import")
+    offsets = [resume_pc]
+    pc = resume_pc + 3
+    for argument in arguments:
+        width = LITERAL_WIDTH.get(code[pc+1])
+        check(code[pc] == 0x04 and width is not None, f"Expected PUSH and a literal at +0x{pc:04X}")
+        operand = code[pc+2:pc+2+width]
+        check(len(operand) == width and int.from_bytes(operand, "little") == argument,
+              f"Argument literal at +0x{pc+1:04X}")
+        offsets.extend((pc, pc+1))
+        pc += 2 + width
+    check(code[pc:pc+2] == bytes((0x21, len(arguments))), "Next CALL and argument count")
+    return [*offsets, pc]
+
+
 def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, arguments, check_tail,
-                      next_arguments=()):
+                      next_arguments=(), program_class=None):
     paths = {p.name.upper(): p for p in game.iterdir() if p.is_file()}
     files = {}
     for name, digest in HASHES.items():
@@ -83,25 +102,29 @@ def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, a
     imports = dictionary(resource(names["phase-one.IMPT"]))
     functions = dictionary(resource(3))
     next_name, import_offset, _ = IMPORTS[next_call]
-    load_import = struct.pack("<BH", 0x20, import_offset)
-    literals = b"".join(bytes((0x04, 0x1d, value)) for value in next_arguments)
-    call_pc = resume_pc + len(load_import) + len(literals)
-    expected_code = bytes((0x21, len(arguments))) + load_import + literals + bytes((0x21, len(next_arguments)))
-    check(start == 0x687718 and code[resume_pc-2:call_pc+2] == expected_code,
-          "phase-one call, import and call bytes")
+    check(start == 0x687718, "phase-one code payload location")
+    fetch_offsets = call_fetch_offsets(code, resume_pc, len(arguments), import_offset, next_arguments)
+    call_pc = fetch_offsets[-1]
+    if program_class is not None:
+        check(next_name == "create_program" and len(next_arguments) == 2 and
+              int(names[program_class]) == next_arguments[1], "Program class resource ID")
+        exports = dictionary(resource(names[f"{program_class}.EXPT"]))
+        check(exports["N:OBJECT"] == program_class, "Program class export name")
 
     with trace.open(newline="", encoding="utf-8") as file:
         rows = list(csv.DictReader(file))
     check(rows and all(None not in row and None not in row.values() for row in rows), "Incomplete CSV record")
-    points = [line.split()[1:] for line in profile.read_text(encoding="ascii").splitlines()
+    points = [tuple(line.split()[1:]) for line in profile.read_text(encoding="ascii").splitlines()
               if line.startswith(("start ", "watch ", "stop "))]
+    registered = set(points)
+    order = list(dict.fromkeys(name for address, name in points))
     literal_points = ("fetch_constant", "fetch_after_constant")
     if next_arguments:
-        names = [name for address, name in points]
-        first = names.index(literal_points[0])
-        check(tuple(names[first:first+2]) == literal_points, "Literal probe order")
-        points[first:first+2] = points[first:first+2] * len(next_arguments)
-    check([(r["image_cs_ip"], r["point"]) for r in rows] == [tuple(p) for p in points], "Checkpoint order")
+        first = order.index(literal_points[0])
+        check(tuple(order[first:first+2]) == literal_points, "Literal probe order")
+        order[first:first+2] = literal_points * len(next_arguments)
+    check([r["point"] for r in rows] == order and all((r["image_cs_ip"], r["point"]) in registered for r in rows),
+          "Checkpoint order or probe address")
     records = {r["point"]: r for r in rows if r["point"] not in literal_points}
     base = (far(rows[0]["guest_cs_ip"])[0] - far(rows[0]["image_cs_ip"])[0]) & 0xffff
     for i, r in enumerate(rows, 1):
@@ -165,13 +188,10 @@ def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, a
         check(sample(row, "ds", "si", "ds_si_dword") == (code_seg, pc, dword(code, pc)),
               f"Live bytecode differs from HACK.RES at +0x{pc:04X}")
 
-    pc = resume_pc
-    sizes = {0x20: 3, 0x04: 1, 0x1d: 2, 0x21: 2}
-    for row in rows:
-        if row["point"].startswith("fetch_"):
-            check_bytecode(row, pc)
-            pc += sizes[code[pc]]
-    check(pc == call_pc+2, "All bytecodes through CALL")
+    fetches = [row for row in rows if row["point"].startswith("fetch_")]
+    check(len(fetches) == len(fetch_offsets), "All bytecodes through CALL")
+    for row, pc in zip(fetches, fetch_offsets):
+        check_bytecode(row, pc)
     check_bytecode(records["import_operand"], resume_pc+1)
     check_bytecode(records["call_argc"], call_pc+1)
     target_cs, target_ip = far(records[target]["guest_cs_ip"])
