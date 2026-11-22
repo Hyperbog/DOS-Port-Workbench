@@ -34,5 +34,6 @@ The initial trace left 28 control transfers unresolved and one path dependent on
 | [1. Resource loading](traces/01-resource-loading/TRACE.md) | DOS opens and reads from the resource files | `py verify_trace.py "D:\Games\Dungeon Hack"` |
 | [2. First message](traces/02-first-message/TRACE.md) | The AESOP interpreter dispatches `create` to `phase-one` and enters `init_sound(0)` | `py verify_dispatch.py "D:\Games\Dungeon Hack"` |
 | [3. Sound return](traces/03-sound-return/TRACE.md) | The handler replaces the sound return value and calls `init_graphics()` | `py verify_return.py "D:\Games\Dungeon Hack"` |
+| [4. Graphics return](traces/04-graphics-return/TRACE.md) | `init_graphics()` returns 2 and the handler calls `init_interface()` with zero arguments | `py verify_return.py "D:\Games\Dungeon Hack"` |
 
-Each verifier reads your local game files and the checked-in capture. The latest trace ends at the graphics routine’s entry.
+Each verifier reads your local game files and the checked-in capture. The two native-return checkpoints use the [same verification code](traces/native_return.py) for the bytecode, stack and function pointers. The latest trace ends at the interface routine’s entry.

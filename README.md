@@ -22,6 +22,6 @@ Follow the [Windows and Ghidra instructions](skills/analyze-dos-game/ghidra/READ
 |---|---|
 | [Analyzer](skills/analyze-dos-game/) | Plugin instructions, Python analyzer, classification rules and Ghidra scripts |
 | [DOSBox recorder](tools/dosbox/) | Profile-driven real-mode instruction recorder and an independent DOS smoke test |
-| [Dungeon Hack case study](skills/analyze-dos-game/examples/dungeon-hack/README.md#runtime-checkpoints) | Function map, three startup traces, game-specific probes and verification commands |
+| [Dungeon Hack case study](skills/analyze-dos-game/examples/dungeon-hack/README.md#runtime-checkpoints) | Function map, startup traces, game-specific probes and verification commands |
 
 Use `main` for staging. Keep reusable tools under their component directory and game-specific profiles, captures and reproduction steps under the corresponding example. Supply original games locally when running the verifiers.

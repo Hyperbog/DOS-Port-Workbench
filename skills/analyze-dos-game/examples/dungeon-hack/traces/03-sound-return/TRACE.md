@@ -24,7 +24,7 @@ Two clean DOSBox 0.74-3 runs produced byte-identical 15-event captures. Each als
 | Included `trace.csv` | `7b4194ed4e80e88139bf45338ad35f485b8402a41960490197b429a13c9779be` |
 | Launch directory’s `SOUND.CFG` | `a9bbba6f71d8a251e734bd06d859db1540e50ae95d6acc565fbea5dd89bb7040` |
 
-From this checkpoint directory, verify the supplied trace against your game files on Windows with this command.
+From this checkpoint directory in a repository checkout, verify the supplied trace against your game files on Windows with this command.
 
 ```powershell
 py verify_return.py "D:\Games\Dungeon Hack"
