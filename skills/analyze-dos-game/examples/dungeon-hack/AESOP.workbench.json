@@ -1,0 +1,1212 @@
+{
+  "report_version": 1,
+  "programs": [
+    "AESOP.EXE"
+  ],
+  "entry": "AESOP.EXE",
+  "executable": {
+    "sha256": "d3676cb71fd9a869004ee08d3f75e96861e19aeb003d89d3c4ef93436796d450",
+    "format": "DOS MZ",
+    "regions": {
+      "loader_header": [
+        0,
+        5632
+      ],
+      "resident_image": [
+        5632,
+        151968
+      ]
+    },
+    "relocation_count": 1223,
+    "entry_relative_cs_ip": "0000:0000",
+    "trace": {
+      "decoded_addresses": 14439,
+      "findings": [
+        {
+          "file_offset": 5642,
+          "cs_ip": "0000:000A",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "dos",
+          "meaning": "DOS API; check AH",
+          "local_register": "ah=30h"
+        },
+        {
+          "file_offset": 5783,
+          "cs_ip": "0000:0097",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "dos",
+          "meaning": "DOS API; check AH"
+        },
+        {
+          "file_offset": 5851,
+          "cs_ip": "0000:00DB",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "dos",
+          "meaning": "DOS API; check AH"
+        },
+        {
+          "file_offset": 5861,
+          "cs_ip": "0000:00E5",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "dos",
+          "meaning": "DOS API; check AH"
+        },
+        {
+          "file_offset": 5870,
+          "cs_ip": "0000:00EE",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "dos",
+          "meaning": "DOS API; check AH"
+        },
+        {
+          "file_offset": 5883,
+          "cs_ip": "0000:00FB",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "memory",
+          "meaning": "free DOS memory",
+          "local_register": "ah=49h"
+        },
+        {
+          "file_offset": 5893,
+          "cs_ip": "0000:0105",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "dos",
+          "meaning": "DOS API; check AH"
+        },
+        {
+          "file_offset": 5902,
+          "cs_ip": "0000:010E",
+          "bytes": "cd 1a",
+          "instruction": "int    0x1a",
+          "subsystem": "timing",
+          "meaning": "read BIOS tick count",
+          "local_register": "ah=0h"
+        },
+        {
+          "file_offset": 6002,
+          "cs_ip": "0000:0172",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "dos",
+          "meaning": "DOS API; check AH"
+        },
+        {
+          "file_offset": 6017,
+          "cs_ip": "0000:0181",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "system",
+          "meaning": "read interrupt vector",
+          "local_register": "ax=3500h"
+        },
+        {
+          "file_offset": 6030,
+          "cs_ip": "0000:018E",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "system",
+          "meaning": "read interrupt vector",
+          "local_register": "ax=3504h"
+        },
+        {
+          "file_offset": 6043,
+          "cs_ip": "0000:019B",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "system",
+          "meaning": "read interrupt vector",
+          "local_register": "ax=3505h"
+        },
+        {
+          "file_offset": 6056,
+          "cs_ip": "0000:01A8",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "system",
+          "meaning": "read interrupt vector",
+          "local_register": "ax=3506h"
+        },
+        {
+          "file_offset": 6076,
+          "cs_ip": "0000:01BC",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "dos",
+          "meaning": "DOS API; check AH"
+        },
+        {
+          "file_offset": 6088,
+          "cs_ip": "0000:01C8",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "dos",
+          "meaning": "DOS API; check AH"
+        },
+        {
+          "file_offset": 6099,
+          "cs_ip": "0000:01D3",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "dos",
+          "meaning": "DOS API; check AH"
+        },
+        {
+          "file_offset": 6110,
+          "cs_ip": "0000:01DE",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "dos",
+          "meaning": "DOS API; check AH"
+        },
+        {
+          "file_offset": 6121,
+          "cs_ip": "0000:01E9",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "dos",
+          "meaning": "DOS API; check AH"
+        },
+        {
+          "file_offset": 6263,
+          "cs_ip": "0000:0277",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "dos",
+          "meaning": "DOS API; check AH"
+        },
+        {
+          "file_offset": 6311,
+          "cs_ip": "0000:02A7",
+          "bytes": "cd 66",
+          "instruction": "int    0x66",
+          "subsystem": "interrupt",
+          "meaning": "unclassified vector"
+        },
+        {
+          "file_offset": 6339,
+          "cs_ip": "0000:02C3",
+          "bytes": "cd 66",
+          "instruction": "int    0x66",
+          "subsystem": "interrupt",
+          "meaning": "unclassified vector"
+        },
+        {
+          "file_offset": 6510,
+          "cs_ip": "0000:036E",
+          "bytes": "cd 66",
+          "instruction": "int    0x66",
+          "subsystem": "interrupt",
+          "meaning": "unclassified vector",
+          "local_register": "ax=695h"
+        },
+        {
+          "file_offset": 6598,
+          "cs_ip": "0000:03C6",
+          "bytes": "cd 66",
+          "instruction": "int    0x66",
+          "subsystem": "interrupt",
+          "meaning": "unclassified vector",
+          "local_register": "ax=701h"
+        },
+        {
+          "file_offset": 9908,
+          "cs_ip": "0000:10B4",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "dos",
+          "meaning": "DOS API; check AH"
+        },
+        {
+          "file_offset": 10193,
+          "cs_ip": "0000:11D1",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "dos",
+          "meaning": "DOS API; check AH"
+        },
+        {
+          "file_offset": 16941,
+          "cs_ip": "0000:2C2D",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "dos",
+          "meaning": "DOS API; check AH"
+        },
+        {
+          "file_offset": 18536,
+          "cs_ip": "0000:3268",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "dos",
+          "meaning": "DOS API; check AH"
+        },
+        {
+          "file_offset": 18834,
+          "cs_ip": "0000:3392",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "dos",
+          "meaning": "DOS API; check AH"
+        },
+        {
+          "file_offset": 18896,
+          "cs_ip": "0000:33D0",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "dos",
+          "meaning": "DOS API; check AH"
+        },
+        {
+          "file_offset": 20811,
+          "cs_ip": "0000:3B4B",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "dos",
+          "meaning": "DOS API; check AH"
+        },
+        {
+          "file_offset": 20838,
+          "cs_ip": "0000:3B66",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "files",
+          "meaning": "write handle",
+          "local_register": "ah=40h"
+        },
+        {
+          "file_offset": 21251,
+          "cs_ip": "0000:3D03",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "files",
+          "meaning": "open file or device",
+          "local_register": "ah=3Dh"
+        },
+        {
+          "file_offset": 25325,
+          "cs_ip": "0000:4CED",
+          "bytes": "cd 21",
+          "instruction": "int    0x21",
+          "subsystem": "dos",
+          "meaning": "DOS API; check AH"
+        },
+        {
+          "file_offset": 26916,
+          "cs_ip": "04D8:05A4",
+          "bytes": "e6 43",
+          "instruction": "out    0x43,al",
+          "subsystem": "timing",
+          "meaning": "PIT control; inspect selected channel"
+        },
+        {
+          "file_offset": 26927,
+          "cs_ip": "04D8:05AF",
+          "bytes": "e6 40",
+          "instruction": "out    0x40,al",
+          "subsystem": "timing",
+          "meaning": "PIT channel 0"
+        },
+        {
+          "file_offset": 26933,
+          "cs_ip": "04D8:05B5",
+          "bytes": "e6 40",
+          "instruction": "out    0x40,al",
+          "subsystem": "timing",
+          "meaning": "PIT channel 0"
+        },
+        {
+          "file_offset": 45001,
+          "cs_ip": "08E2:0BA9",
+          "bytes": "cd 10",
+          "instruction": "int    0x10",
+          "subsystem": "video",
+          "meaning": "BIOS video service"
+        },
+        {
+          "file_offset": 73975,
+          "cs_ip": "10A5:00A7",
+          "bytes": "cd 67",
+          "instruction": "int    0x67",
+          "subsystem": "memory",
+          "meaning": "expanded memory manager service",
+          "local_register": "ah=44h"
+        },
+        {
+          "file_offset": 93934,
+          "cs_ip": "12FC:292E",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 93936,
+          "cs_ip": "12FC:2930",
+          "bytes": "ec",
+          "instruction": "in     al,dx",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 93939,
+          "cs_ip": "12FC:2933",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 93947,
+          "cs_ip": "12FC:293B",
+          "bytes": "ef",
+          "instruction": "out    dx,ax",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94063,
+          "cs_ip": "12FC:29AF",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94065,
+          "cs_ip": "12FC:29B1",
+          "bytes": "ec",
+          "instruction": "in     al,dx",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94068,
+          "cs_ip": "12FC:29B4",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94129,
+          "cs_ip": "12FC:29F1",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94135,
+          "cs_ip": "12FC:29F7",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94146,
+          "cs_ip": "12FC:2A02",
+          "bytes": "ef",
+          "instruction": "out    dx,ax",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94154,
+          "cs_ip": "12FC:2A0A",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94158,
+          "cs_ip": "12FC:2A0E",
+          "bytes": "8e c0",
+          "instruction": "mov    es,ax",
+          "subsystem": "video",
+          "meaning": "possible video memory segment B000h",
+          "local_register": "ax=B000h"
+        },
+        {
+          "file_offset": 94209,
+          "cs_ip": "12FC:2A41",
+          "bytes": "cd 10",
+          "instruction": "int    0x10",
+          "subsystem": "video",
+          "meaning": "set video mode (AL selects mode)",
+          "local_register": "ah=0h"
+        },
+        {
+          "file_offset": 94224,
+          "cs_ip": "12FC:2A50",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94226,
+          "cs_ip": "12FC:2A52",
+          "bytes": "ec",
+          "instruction": "in     al,dx",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94229,
+          "cs_ip": "12FC:2A55",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94233,
+          "cs_ip": "12FC:2A59",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94235,
+          "cs_ip": "12FC:2A5B",
+          "bytes": "ec",
+          "instruction": "in     al,dx",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94240,
+          "cs_ip": "12FC:2A60",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94246,
+          "cs_ip": "12FC:2A66",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94248,
+          "cs_ip": "12FC:2A68",
+          "bytes": "ec",
+          "instruction": "in     al,dx",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94251,
+          "cs_ip": "12FC:2A6B",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94255,
+          "cs_ip": "12FC:2A6F",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94257,
+          "cs_ip": "12FC:2A71",
+          "bytes": "ec",
+          "instruction": "in     al,dx",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94260,
+          "cs_ip": "12FC:2A74",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94266,
+          "cs_ip": "12FC:2A7A",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94268,
+          "cs_ip": "12FC:2A7C",
+          "bytes": "ec",
+          "instruction": "in     al,dx",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94271,
+          "cs_ip": "12FC:2A7F",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94275,
+          "cs_ip": "12FC:2A83",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94277,
+          "cs_ip": "12FC:2A85",
+          "bytes": "ec",
+          "instruction": "in     al,dx",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94280,
+          "cs_ip": "12FC:2A88",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94288,
+          "cs_ip": "12FC:2A90",
+          "bytes": "ef",
+          "instruction": "out    dx,ax",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94292,
+          "cs_ip": "12FC:2A94",
+          "bytes": "8e c0",
+          "instruction": "mov    es,ax",
+          "subsystem": "video",
+          "meaning": "possible video memory segment A000h",
+          "local_register": "ax=A000h"
+        },
+        {
+          "file_offset": 94307,
+          "cs_ip": "12FC:2AA3",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94309,
+          "cs_ip": "12FC:2AA5",
+          "bytes": "ec",
+          "instruction": "in     al,dx",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94312,
+          "cs_ip": "12FC:2AA8",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94318,
+          "cs_ip": "12FC:2AAE",
+          "bytes": "ef",
+          "instruction": "out    dx,ax",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94418,
+          "cs_ip": "12FC:2B12",
+          "bytes": "ec",
+          "instruction": "in     al,dx",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 94423,
+          "cs_ip": "12FC:2B17",
+          "bytes": "ec",
+          "instruction": "in     al,dx",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 99081,
+          "cs_ip": "12FC:3D49",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 99083,
+          "cs_ip": "12FC:3D4B",
+          "bytes": "ec",
+          "instruction": "in     al,dx",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 99086,
+          "cs_ip": "12FC:3D4E",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 99094,
+          "cs_ip": "12FC:3D56",
+          "bytes": "ef",
+          "instruction": "out    dx,ax",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 99126,
+          "cs_ip": "12FC:3D76",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 99128,
+          "cs_ip": "12FC:3D78",
+          "bytes": "ec",
+          "instruction": "in     al,dx",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 99131,
+          "cs_ip": "12FC:3D7B",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 99149,
+          "cs_ip": "12FC:3D8D",
+          "bytes": "ef",
+          "instruction": "out    dx,ax",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03CEh",
+          "local_register": "dx=3CEh"
+        },
+        {
+          "file_offset": 99172,
+          "cs_ip": "12FC:3DA4",
+          "bytes": "ef",
+          "instruction": "out    dx,ax",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C4h",
+          "local_register": "dx=3C4h"
+        },
+        {
+          "file_offset": 99223,
+          "cs_ip": "12FC:3DD7",
+          "bytes": "ef",
+          "instruction": "out    dx,ax",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C4h",
+          "local_register": "dx=3C4h"
+        },
+        {
+          "file_offset": 99243,
+          "cs_ip": "12FC:3DEB",
+          "bytes": "ef",
+          "instruction": "out    dx,ax",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03CEh",
+          "local_register": "dx=3CEh"
+        },
+        {
+          "file_offset": 99392,
+          "cs_ip": "12FC:3E80",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 99394,
+          "cs_ip": "12FC:3E82",
+          "bytes": "ec",
+          "instruction": "in     al,dx",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 99397,
+          "cs_ip": "12FC:3E85",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 99550,
+          "cs_ip": "12FC:3F1E",
+          "bytes": "ef",
+          "instruction": "out    dx,ax",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 99554,
+          "cs_ip": "12FC:3F22",
+          "bytes": "ef",
+          "instruction": "out    dx,ax",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 99567,
+          "cs_ip": "12FC:3F2F",
+          "bytes": "ef",
+          "instruction": "out    dx,ax",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 99593,
+          "cs_ip": "12FC:3F49",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 99595,
+          "cs_ip": "12FC:3F4B",
+          "bytes": "ec",
+          "instruction": "in     al,dx",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 99598,
+          "cs_ip": "12FC:3F4E",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 99885,
+          "cs_ip": "12FC:406D",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 99909,
+          "cs_ip": "12FC:4085",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 99931,
+          "cs_ip": "12FC:409B",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 99954,
+          "cs_ip": "12FC:40B2",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 104798,
+          "cs_ip": "12FC:539E",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 104818,
+          "cs_ip": "12FC:53B2",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C5h",
+          "local_register": "dx=3C5h"
+        },
+        {
+          "file_offset": 104893,
+          "cs_ip": "12FC:53FD",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C5h",
+          "local_register": "dx=3C5h"
+        },
+        {
+          "file_offset": 108967,
+          "cs_ip": "12FC:63E7",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 109314,
+          "cs_ip": "12FC:6542",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C5h",
+          "local_register": "dx=3C5h"
+        },
+        {
+          "file_offset": 109417,
+          "cs_ip": "12FC:65A9",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C5h",
+          "local_register": "dx=3C5h"
+        },
+        {
+          "file_offset": 109520,
+          "cs_ip": "12FC:6610",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C5h",
+          "local_register": "dx=3C5h"
+        },
+        {
+          "file_offset": 109620,
+          "cs_ip": "12FC:6674",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C5h",
+          "local_register": "dx=3C5h"
+        },
+        {
+          "file_offset": 110403,
+          "cs_ip": "12FC:6983",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C5h",
+          "local_register": "dx=3C5h"
+        },
+        {
+          "file_offset": 110506,
+          "cs_ip": "12FC:69EA",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C5h",
+          "local_register": "dx=3C5h"
+        },
+        {
+          "file_offset": 110609,
+          "cs_ip": "12FC:6A51",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C5h",
+          "local_register": "dx=3C5h"
+        },
+        {
+          "file_offset": 110709,
+          "cs_ip": "12FC:6AB5",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C5h",
+          "local_register": "dx=3C5h"
+        },
+        {
+          "file_offset": 111218,
+          "cs_ip": "12FC:6CB2",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C5h",
+          "local_register": "dx=3C5h"
+        },
+        {
+          "file_offset": 111322,
+          "cs_ip": "12FC:6D1A",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C5h",
+          "local_register": "dx=3C5h"
+        },
+        {
+          "file_offset": 111426,
+          "cs_ip": "12FC:6D82",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C5h",
+          "local_register": "dx=3C5h"
+        },
+        {
+          "file_offset": 111527,
+          "cs_ip": "12FC:6DE7",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C5h",
+          "local_register": "dx=3C5h"
+        },
+        {
+          "file_offset": 112190,
+          "cs_ip": "12FC:707E",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 113079,
+          "cs_ip": "12FC:73F7",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C5h",
+          "local_register": "dx=3C5h"
+        },
+        {
+          "file_offset": 113182,
+          "cs_ip": "12FC:745E",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C5h",
+          "local_register": "dx=3C5h"
+        },
+        {
+          "file_offset": 113285,
+          "cs_ip": "12FC:74C5",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C5h",
+          "local_register": "dx=3C5h"
+        },
+        {
+          "file_offset": 113385,
+          "cs_ip": "12FC:7529",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C5h",
+          "local_register": "dx=3C5h"
+        },
+        {
+          "file_offset": 113530,
+          "cs_ip": "12FC:75BA",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C5h",
+          "local_register": "dx=3C5h"
+        },
+        {
+          "file_offset": 113634,
+          "cs_ip": "12FC:7622",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C5h",
+          "local_register": "dx=3C5h"
+        },
+        {
+          "file_offset": 113738,
+          "cs_ip": "12FC:768A",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C5h",
+          "local_register": "dx=3C5h"
+        },
+        {
+          "file_offset": 113839,
+          "cs_ip": "12FC:76EF",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C5h",
+          "local_register": "dx=3C5h"
+        },
+        {
+          "file_offset": 114505,
+          "cs_ip": "12FC:7989",
+          "bytes": "ef",
+          "instruction": "out    dx,ax",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03CEh",
+          "local_register": "dx=3CEh"
+        },
+        {
+          "file_offset": 114513,
+          "cs_ip": "12FC:7991",
+          "bytes": "ef",
+          "instruction": "out    dx,ax",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C4h",
+          "local_register": "dx=3C4h"
+        },
+        {
+          "file_offset": 114872,
+          "cs_ip": "12FC:7AF8",
+          "bytes": "ef",
+          "instruction": "out    dx,ax",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03CEh",
+          "local_register": "dx=3CEh"
+        },
+        {
+          "file_offset": 114909,
+          "cs_ip": "12FC:7B1D",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 114911,
+          "cs_ip": "12FC:7B1F",
+          "bytes": "ec",
+          "instruction": "in     al,dx",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 114914,
+          "cs_ip": "12FC:7B22",
+          "bytes": "ee",
+          "instruction": "out    dx,al",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 114992,
+          "cs_ip": "12FC:7B70",
+          "bytes": "ef",
+          "instruction": "out    dx,ax",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C4h",
+          "local_register": "dx=3C4h"
+        },
+        {
+          "file_offset": 115018,
+          "cs_ip": "12FC:7B8A",
+          "bytes": "ef",
+          "instruction": "out    dx,ax",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        },
+        {
+          "file_offset": 115081,
+          "cs_ip": "12FC:7BC9",
+          "bytes": "ef",
+          "instruction": "out    dx,ax",
+          "subsystem": "hardware",
+          "meaning": "I/O port 03C4h",
+          "local_register": "dx=3C4h"
+        },
+        {
+          "file_offset": 115157,
+          "cs_ip": "12FC:7C15",
+          "bytes": "ef",
+          "instruction": "out    dx,ax",
+          "subsystem": "hardware",
+          "meaning": "I/O via unresolved DX"
+        }
+      ],
+      "unresolved": {
+        "0000:0CFE": "unresolved transfer: call   DWORD PTR ds:0x1ae2",
+        "0000:0CEE": "unresolved transfer: call   DWORD PTR [bx-0x7212]",
+        "0000:0D16": "unresolved transfer: call   DWORD PTR ds:0x1ae6",
+        "0000:0D1A": "unresolved transfer: call   DWORD PTR ds:0x1aea",
+        "0000:026A": "unresolved transfer: call   WORD PTR es:[bx+0x2]",
+        "0000:0263": "unresolved transfer: call   DWORD PTR es:[bx+0x2]",
+        "0000:0229": "unresolved transfer: call   WORD PTR es:[bx+0x2]",
+        "0000:0222": "unresolved transfer: call   DWORD PTR es:[bx+0x2]",
+        "08E2:036B": "control depends on a handler or CPU mode",
+        "0000:1742": "unresolved transfer: call   WORD PTR [bp+0xe]",
+        "0000:17CC": "unresolved transfer: jmp    WORD PTR cs:[bx+0x1b8e]",
+        "0000:2B50": "unresolved transfer: call   DWORD PTR [bp-0x4]",
+        "10B3:01F2": "unresolved transfer: jmp    WORD PTR cs:[bx+0x2ac]",
+        "128D:0071": "unresolved transfer: call   DWORD PTR ds:0x19c0",
+        "10F5:09E4": "unresolved transfer: jmp    WORD PTR cs:[bx+0x641]",
+        "0C7E:0E0D": "unresolved transfer: jmp    WORD PTR cs:[bx+0x22]",
+        "12FC:5A43": "unresolved transfer: call   DWORD PTR ds:0xf66",
+        "12FC:5A3C": "unresolved transfer: call   WORD PTR [di+0x5a60]",
+        "0000:416B": "unresolved transfer: call   DWORD PTR ds:0x8f28",
+        "0000:41BE": "unresolved transfer: call   DWORD PTR ds:0x8f28",
+        "0000:41E4": "unresolved transfer: call   DWORD PTR ds:0x8f28",
+        "0000:4209": "unresolved transfer: call   DWORD PTR ds:0x8f28",
+        "09A2:04CD": "unresolved transfer: jmp    WORD PTR cs:[bx+0x8]",
+        "0000:4282": "unresolved transfer: call   DWORD PTR ds:0x8f28",
+        "0000:42A3": "unresolved transfer: call   DWORD PTR ds:0x8f28",
+        "0000:42F2": "unresolved transfer: call   DWORD PTR ds:0x8f28",
+        "12FC:5DF8": "unresolved transfer: call   WORD PTR [di+0x5c38]",
+        "09A2:02CA": "unresolved transfer: jmp    WORD PTR cs:[bx+0x8]",
+        "12FC:5573": "unresolved transfer: call   DWORD PTR es:[si+0xc]"
+      }
+    },
+    "status": "partial static analysis"
+  },
+  "native_port_targets": {
+    "dos": "Recover the DOS function selector and caller contract before choosing a native API.",
+    "files": "Map DOS names, modes, seek offsets and short reads. Verify one asset load and one save/load round trip.",
+    "hardware": "Resolve the port, transfer direction and bit usage before naming the device.",
+    "interrupt": "Identify the game's installed handler before assigning a subsystem.",
+    "memory": "Trace ownership and segment aliases before replacing allocation with native memory.",
+    "system": "Inspect the selected BIOS service or interrupt handler and its state changes.",
+    "timing": "Measure original simulation ticks per action. Run at that cadence, then vary only the display refresh.",
+    "video": "Reproduce one original frame and palette. Compare pixels before adding window scaling or aspect options."
+  },
+  "files": [
+    {
+      "path": "AESOP.EXE",
+      "size": 151968,
+      "decision": "keep pending runtime evidence",
+      "included": true
+    }
+  ]
+}

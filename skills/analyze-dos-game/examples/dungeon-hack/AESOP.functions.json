@@ -1,0 +1,2620 @@
+{
+  "map_version": 1,
+  "ghidra_version": "11.4.2",
+  "executable": "AESOP.EXE",
+  "sha256": "d3676cb71fd9a869004ee08d3f75e96861e19aeb003d89d3c4ef93436796d450",
+  "language": "x86:LE:16:Real Mode",
+  "loader": "Old-style DOS Executable (MZ)",
+  "status_counts": {
+    "mapped": 136
+  },
+  "functions": {
+    "1000:0000": {
+      "entry": "1000:0000",
+      "name": "entry",
+      "file_offset": 5632,
+      "incoming_calls": []
+    },
+    "1000:016b": {
+      "entry": "1000:016b",
+      "name": "FUN_1000_016b",
+      "file_offset": 5995,
+      "incoming_calls": [
+        {
+          "from": "1000:0d23",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 8995,
+          "caller_entry": "1000:0cd5"
+        }
+      ]
+    },
+    "1000:017d": {
+      "entry": "1000:017d",
+      "name": "FUN_1000_017d",
+      "file_offset": 6013,
+      "incoming_calls": [
+        {
+          "from": "1000:0025",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 5669,
+          "caller_entry": "1000:0000"
+        }
+      ]
+    },
+    "1000:01c0": {
+      "entry": "1000:01c0",
+      "name": "FUN_1000_01c0",
+      "file_offset": 6080,
+      "incoming_calls": [
+        {
+          "from": "1000:0d04",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 8964,
+          "caller_entry": "1000:0cd5"
+        }
+      ]
+    },
+    "1000:0272": {
+      "entry": "1000:0272",
+      "name": "FUN_1000_0272",
+      "file_offset": 6258,
+      "incoming_calls": [
+        {
+          "from": "1000:0285",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 6277,
+          "caller_entry": "1000:027a"
+        }
+      ]
+    },
+    "1000:027a": {
+      "entry": "1000:027a",
+      "name": "FUN_1000_027a",
+      "file_offset": 6266,
+      "incoming_calls": [
+        {
+          "from": "1000:007e",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 5758,
+          "caller_entry": "1000:0000"
+        },
+        {
+          "from": "1000:0109",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 5897,
+          "caller_entry": "1000:0000"
+        },
+        {
+          "from": "1000:1fa0",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 13728,
+          "caller_entry": "1000:1f84"
+        }
+      ]
+    },
+    "1000:02b8": {
+      "entry": "1000:02b8",
+      "name": "FUN_1000_02b8",
+      "file_offset": 6328,
+      "incoming_calls": [
+        {
+          "from": "20b3:0269",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 74649,
+          "caller_entry": "20b3:0103"
+        }
+      ]
+    },
+    "1000:0363": {
+      "entry": "1000:0363",
+      "name": "FUN_1000_0363",
+      "file_offset": 6499,
+      "incoming_calls": [
+        {
+          "from": "20b3:029f",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 74703,
+          "caller_entry": "20b3:0103"
+        }
+      ]
+    },
+    "1000:03a4": {
+      "entry": "1000:03a4",
+      "name": "FUN_1000_03a4",
+      "file_offset": 6564,
+      "incoming_calls": [
+        {
+          "from": "1000:029a",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 6298,
+          "caller_entry": "1000:027a"
+        },
+        {
+          "from": "1000:03a0",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 6560,
+          "caller_entry": "1000:03a0"
+        }
+      ]
+    },
+    "1000:1098": {
+      "entry": "1000:1098",
+      "name": "FUN_1000_1098",
+      "file_offset": 9880,
+      "incoming_calls": [
+        {
+          "from": "1000:1697",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 11415,
+          "caller_entry": "1000:1685"
+        },
+        {
+          "from": "1000:4bbd",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 25021,
+          "caller_entry": "1000:4b7a"
+        },
+        {
+          "from": "16bf:1065",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 37461,
+          "caller_entry": "16bf:0ffb"
+        },
+        {
+          "from": "16bf:10d2",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 37570,
+          "caller_entry": "16bf:0ffb"
+        },
+        {
+          "from": "1000:449f",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 23199,
+          "caller_entry": "1000:43e9"
+        },
+        {
+          "from": "16bf:1939",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 39721,
+          "caller_entry": "16bf:18c0"
+        },
+        {
+          "from": "16bf:113b",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 37675,
+          "caller_entry": "16bf:111c"
+        },
+        {
+          "from": "16bf:116b",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 37723,
+          "caller_entry": "16bf:111c"
+        },
+        {
+          "from": "1000:38fe",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 20222,
+          "caller_entry": "1000:3898"
+        },
+        {
+          "from": "1000:3933",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 20275,
+          "caller_entry": "1000:3918"
+        },
+        {
+          "from": "1000:397e",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 20350,
+          "caller_entry": "1000:3918"
+        },
+        {
+          "from": "1000:39a8",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 20392,
+          "caller_entry": "1000:3918"
+        },
+        {
+          "from": "1000:3e8d",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 21645,
+          "caller_entry": "1000:3d61"
+        },
+        {
+          "from": "1000:3fad",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 21933,
+          "caller_entry": "1000:3f0a"
+        },
+        {
+          "from": "1000:405d",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 22109,
+          "caller_entry": "1000:3f0a"
+        },
+        {
+          "from": "1a4f:01b2",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 48290,
+          "caller_entry": "1a4f:0162"
+        },
+        {
+          "from": "1a4f:0227",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 48407,
+          "caller_entry": "1a4f:01de"
+        },
+        {
+          "from": "1a4f:027e",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 48494,
+          "caller_entry": "1a4f:024c"
+        },
+        {
+          "from": "1a4f:0498",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 49032,
+          "caller_entry": "1a4f:0481"
+        },
+        {
+          "from": "1a4f:07d8",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 49864,
+          "caller_entry": "1a4f:076f"
+        }
+      ]
+    },
+    "1000:11af": {
+      "entry": "1000:11af",
+      "name": "FUN_1000_11af",
+      "file_offset": 10159,
+      "incoming_calls": [
+        {
+          "from": "1000:442d",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 23085,
+          "caller_entry": "1000:43e9"
+        },
+        {
+          "from": "1000:447a",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 23162,
+          "caller_entry": "1000:43e9"
+        }
+      ]
+    },
+    "1000:2c1b": {
+      "entry": "1000:2c1b",
+      "name": "FUN_1000_2c1b",
+      "file_offset": 16923,
+      "incoming_calls": [
+        {
+          "from": "1000:3c40",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 21056,
+          "caller_entry": "1000:3b6c"
+        },
+        {
+          "from": "1000:3c68",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 21096,
+          "caller_entry": "1000:3b6c"
+        }
+      ]
+    },
+    "1000:325d": {
+      "entry": "1000:325d",
+      "name": "FUN_1000_325d",
+      "file_offset": 18525,
+      "incoming_calls": [
+        {
+          "from": "1000:2873",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 15987,
+          "caller_entry": "1000:2829"
+        }
+      ]
+    },
+    "1000:3383": {
+      "entry": "1000:3383",
+      "name": "FUN_1000_3383",
+      "file_offset": 18819,
+      "incoming_calls": [
+        {
+          "from": "1000:3b93",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 20883,
+          "caller_entry": "1000:3b6c"
+        },
+        {
+          "from": "1000:3c9a",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 21146,
+          "caller_entry": "1000:3b6c"
+        }
+      ]
+    },
+    "1000:33c8": {
+      "entry": "1000:33c8",
+      "name": "FUN_1000_33c8",
+      "file_offset": 18888,
+      "incoming_calls": [
+        {
+          "from": "1000:33c2",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 18882,
+          "caller_entry": "1000:33a0"
+        },
+        {
+          "from": "1000:3c0a",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 21002,
+          "caller_entry": "1000:3b6c"
+        }
+      ]
+    },
+    "1000:3b3f": {
+      "entry": "1000:3b3f",
+      "name": "FUN_1000_3b3f",
+      "file_offset": 20799,
+      "incoming_calls": [
+        {
+          "from": "1000:3bfb",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 20987,
+          "caller_entry": "1000:3b6c"
+        },
+        {
+          "from": "1000:3c19",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 21017,
+          "caller_entry": "1000:3b6c"
+        }
+      ]
+    },
+    "1000:3b5a": {
+      "entry": "1000:3b5a",
+      "name": "FUN_1000_3b5a",
+      "file_offset": 20826,
+      "incoming_calls": [
+        {
+          "from": "1000:3c77",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 21111,
+          "caller_entry": "1000:3b6c"
+        }
+      ]
+    },
+    "1000:3cdb": {
+      "entry": "1000:3cdb",
+      "name": "FUN_1000_3cdb",
+      "file_offset": 21211,
+      "incoming_calls": [
+        {
+          "from": "1000:3c2e",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 21038,
+          "caller_entry": "1000:3b6c"
+        }
+      ]
+    },
+    "1000:4ccb": {
+      "entry": "1000:4ccb",
+      "name": "FUN_1000_4ccb",
+      "file_offset": 25291,
+      "incoming_calls": [
+        {
+          "from": "1000:4bdb",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 25051,
+          "caller_entry": "1000:4b7a"
+        },
+        {
+          "from": "1000:4c59",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 25177,
+          "caller_entry": "1000:4b7a"
+        },
+        {
+          "from": "1000:4ca8",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 25256,
+          "caller_entry": "1000:4b7a"
+        },
+        {
+          "from": "1000:3eb6",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 21686,
+          "caller_entry": "1000:3d61"
+        },
+        {
+          "from": "1000:3ed5",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 21717,
+          "caller_entry": "1000:3d61"
+        },
+        {
+          "from": "1000:3fc5",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 21957,
+          "caller_entry": "1000:3f0a"
+        },
+        {
+          "from": "1000:4075",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 22133,
+          "caller_entry": "1000:3f0a"
+        }
+      ]
+    },
+    "14d8:059a": {
+      "entry": "14d8:059a",
+      "name": "FUN_14d8_059a",
+      "file_offset": 26906,
+      "incoming_calls": [
+        {
+          "from": "14d8:087b",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 27643,
+          "caller_entry": "14d8:0848"
+        },
+        {
+          "from": "14d8:05e2",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 26978,
+          "caller_entry": "14d8:05c3"
+        },
+        {
+          "from": "14d8:0ed3",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 29267,
+          "caller_entry": "14d8:0eb1"
+        }
+      ]
+    },
+    "18e2:0b9c": {
+      "entry": "18e2:0b9c",
+      "name": "FUN_18e2_0b9c",
+      "file_offset": 44988,
+      "incoming_calls": [
+        {
+          "from": "18e2:02e8",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 42760,
+          "caller_entry": "18e2:02b2"
+        },
+        {
+          "from": "1f36:16ab",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 73739,
+          "caller_entry": "1f36:1603"
+        }
+      ]
+    },
+    "20a5:008b": {
+      "entry": "20a5:008b",
+      "name": "FUN_20a5_008b",
+      "file_offset": 73947,
+      "incoming_calls": [
+        {
+          "from": "20b3:0168",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 74392,
+          "caller_entry": "20b3:0103"
+        },
+        {
+          "from": "1bb9:01ec",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 54140,
+          "caller_entry": "1bb9:00c0"
+        }
+      ]
+    },
+    "22fc:291b": {
+      "entry": "22fc:291b",
+      "name": "FUN_22fc_291b",
+      "file_offset": 93915,
+      "incoming_calls": [
+        {
+          "from": "1c7e:017f",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 57183,
+          "caller_entry": "1c7e:014b"
+        },
+        {
+          "from": "1c7e:01a8",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 57224,
+          "caller_entry": "1c7e:014b"
+        },
+        {
+          "from": "22fc:4fba",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 103802,
+          "caller_entry": "22fc:4c18"
+        },
+        {
+          "from": "22fc:4fc5",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 103813,
+          "caller_entry": "22fc:4c18"
+        },
+        {
+          "from": "22fc:4fd0",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 103824,
+          "caller_entry": "22fc:4c18"
+        },
+        {
+          "from": "22fc:5000",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 103872,
+          "caller_entry": "22fc:4c18"
+        },
+        {
+          "from": "22fc:500b",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 103883,
+          "caller_entry": "22fc:4c18"
+        },
+        {
+          "from": "22fc:5016",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 103894,
+          "caller_entry": "22fc:4c18"
+        },
+        {
+          "from": "22fc:5046",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 103942,
+          "caller_entry": "22fc:4c18"
+        },
+        {
+          "from": "22fc:5051",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 103953,
+          "caller_entry": "22fc:4c18"
+        },
+        {
+          "from": "22fc:505c",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 103964,
+          "caller_entry": "22fc:4c18"
+        },
+        {
+          "from": "22fc:5067",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 103975,
+          "caller_entry": "22fc:4c18"
+        },
+        {
+          "from": "22fc:5072",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 103986,
+          "caller_entry": "22fc:4c18"
+        },
+        {
+          "from": "1c7e:0a6e",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 59470,
+          "caller_entry": "1c7e:0a68"
+        },
+        {
+          "from": "1ddd:081f",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 64495,
+          "caller_entry": "1ddd:07c5"
+        },
+        {
+          "from": "1ddd:0a81",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 65105,
+          "caller_entry": "1ddd:083a"
+        }
+      ]
+    },
+    "22fc:29d3": {
+      "entry": "22fc:29d3",
+      "name": "FUN_22fc_29d3",
+      "file_offset": 94099,
+      "incoming_calls": [
+        {
+          "from": "18e2:02c4",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 42724,
+          "caller_entry": "18e2:02b2"
+        },
+        {
+          "from": "1ddd:0755",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 64293,
+          "caller_entry": "1ddd:0642"
+        }
+      ]
+    },
+    "22fc:2afd": {
+      "entry": "22fc:2afd",
+      "name": "FUN_22fc_2afd",
+      "file_offset": 94397,
+      "incoming_calls": [
+        {
+          "from": "1ddd:0bb0",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 65408,
+          "caller_entry": "1ddd:0b9e"
+        },
+        {
+          "from": "22fc:545a",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 104986,
+          "caller_entry": "22fc:5217"
+        },
+        {
+          "from": "1c7e:0641",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 58401,
+          "caller_entry": "1c7e:04f9"
+        },
+        {
+          "from": "22fc:4443",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 100867,
+          "caller_entry": "22fc:4153"
+        },
+        {
+          "from": "22fc:46f0",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 101552,
+          "caller_entry": "22fc:4459"
+        },
+        {
+          "from": "22fc:4709",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 101577,
+          "caller_entry": "22fc:4459"
+        },
+        {
+          "from": "22fc:4803",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 101827,
+          "caller_entry": "22fc:4459"
+        },
+        {
+          "from": "22fc:4a29",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 102377,
+          "caller_entry": "22fc:4845"
+        },
+        {
+          "from": "22fc:4a42",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 102402,
+          "caller_entry": "22fc:4845"
+        },
+        {
+          "from": "22fc:4b16",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 102614,
+          "caller_entry": "22fc:4845"
+        },
+        {
+          "from": "22fc:50f7",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 104119,
+          "caller_entry": "22fc:50ce"
+        },
+        {
+          "from": "22fc:5121",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 104161,
+          "caller_entry": "22fc:50ce"
+        }
+      ]
+    },
+    "22fc:3a79": {
+      "entry": "22fc:3a79",
+      "name": "FUN_22fc_3a79",
+      "file_offset": 98361,
+      "incoming_calls": [
+        {
+          "from": "1ddd:0cad",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 65661,
+          "caller_entry": "1ddd:0c9a"
+        },
+        {
+          "from": "1ddd:0d0c",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 65756,
+          "caller_entry": "1ddd:0c9a"
+        },
+        {
+          "from": "1ddd:0d1f",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 65775,
+          "caller_entry": "1ddd:0c9a"
+        },
+        {
+          "from": "22fc:4f53",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 103699,
+          "caller_entry": "22fc:4c18"
+        },
+        {
+          "from": "22fc:4f62",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 103714,
+          "caller_entry": "22fc:4c18"
+        },
+        {
+          "from": "22fc:4f71",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 103729,
+          "caller_entry": "22fc:4c18"
+        },
+        {
+          "from": "22fc:4f80",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 103744,
+          "caller_entry": "22fc:4c18"
+        },
+        {
+          "from": "22fc:4f9f",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 103775,
+          "caller_entry": "22fc:4c18"
+        },
+        {
+          "from": "22fc:4fe5",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 103845,
+          "caller_entry": "22fc:4c18"
+        },
+        {
+          "from": "22fc:502b",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 103915,
+          "caller_entry": "22fc:4c18"
+        },
+        {
+          "from": "22fc:4778",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 101688,
+          "caller_entry": "22fc:4459"
+        },
+        {
+          "from": "1c7e:0a8a",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 59498,
+          "caller_entry": "1c7e:0a81"
+        }
+      ]
+    },
+    "22fc:3f5f": {
+      "entry": "22fc:3f5f",
+      "name": "FUN_22fc_3f5f",
+      "file_offset": 99615,
+      "incoming_calls": [
+        {
+          "from": "22fc:4faf",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 103791,
+          "caller_entry": "22fc:4c18"
+        },
+        {
+          "from": "22fc:4ff5",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 103861,
+          "caller_entry": "22fc:4c18"
+        },
+        {
+          "from": "22fc:503b",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 103931,
+          "caller_entry": "22fc:4c18"
+        },
+        {
+          "from": "1c7e:0b20",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 59648,
+          "caller_entry": "1c7e:0b17"
+        },
+        {
+          "from": "22fc:59b2",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 106354,
+          "caller_entry": "22fc:58dd"
+        },
+        {
+          "from": "1ddd:0a17",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 64999,
+          "caller_entry": "1ddd:083a"
+        }
+      ]
+    },
+    "22fc:5217": {
+      "entry": "22fc:5217",
+      "name": "FUN_22fc_5217",
+      "file_offset": 104407,
+      "incoming_calls": [
+        {
+          "from": "22fc:5e22",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 107490,
+          "caller_entry": "22fc:5c40"
+        }
+      ]
+    },
+    "22fc:6290": {
+      "entry": "22fc:6290",
+      "name": "FUN_22fc_6290",
+      "file_offset": 108624,
+      "incoming_calls": [
+        {
+          "from": "1c7e:0408",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 57832,
+          "caller_entry": "1c7e:0349"
+        },
+        {
+          "from": "1ddd:0a3a",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 65034,
+          "caller_entry": "1ddd:083a"
+        },
+        {
+          "from": "1f36:0945",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 70309,
+          "caller_entry": "1f36:0785"
+        }
+      ]
+    },
+    "22fc:6f48": {
+      "entry": "22fc:6f48",
+      "name": "FUN_22fc_6f48",
+      "file_offset": 111880,
+      "incoming_calls": [
+        {
+          "from": "22fc:62c0",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 108672,
+          "caller_entry": "22fc:6290"
+        }
+      ]
+    },
+    "22fc:7779": {
+      "entry": "22fc:7779",
+      "name": "FUN_22fc_7779",
+      "file_offset": 113977,
+      "incoming_calls": [
+        {
+          "from": "1c7e:0d26",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 60166,
+          "caller_entry": "1c7e:0ce4"
+        }
+      ]
+    },
+    "22fc:7aa0": {
+      "entry": "22fc:7aa0",
+      "name": "FUN_22fc_7aa0",
+      "file_offset": 114784,
+      "incoming_calls": [
+        {
+          "from": "1ddd:0221",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 62961,
+          "caller_entry": "1ddd:01ab"
+        }
+      ]
+    },
+    "22fc:7b12": {
+      "entry": "22fc:7b12",
+      "name": "FUN_22fc_7b12",
+      "file_offset": 114898,
+      "incoming_calls": [
+        {
+          "from": "1ddd:0269",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 63033,
+          "caller_entry": "1ddd:0244"
+        }
+      ]
+    },
+    "22fc:7b90": {
+      "entry": "22fc:7b90",
+      "name": "FUN_22fc_7b90",
+      "file_offset": 115024,
+      "incoming_calls": [
+        {
+          "from": "1ddd:0317",
+          "type": "UNCONDITIONAL_CALL",
+          "file_offset": 63207,
+          "caller_entry": "1ddd:0273"
+        }
+      ]
+    }
+  },
+  "sites": [
+    {
+      "file_offset": 5642,
+      "cs_ip": "0000:000A",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "dos",
+      "meaning": "DOS API; check AH",
+      "local_register": "ah\u003d30h",
+      "ghidra_address": "1000:000a",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:0000",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 5783,
+      "cs_ip": "0000:0097",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "dos",
+      "meaning": "DOS API; check AH",
+      "ghidra_address": "1000:0097",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:0000",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 5851,
+      "cs_ip": "0000:00DB",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "dos",
+      "meaning": "DOS API; check AH",
+      "ghidra_address": "1000:00db",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:0000",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 5861,
+      "cs_ip": "0000:00E5",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "dos",
+      "meaning": "DOS API; check AH",
+      "ghidra_address": "1000:00e5",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:0000",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 5870,
+      "cs_ip": "0000:00EE",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "dos",
+      "meaning": "DOS API; check AH",
+      "ghidra_address": "1000:00ee",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:0000",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 5883,
+      "cs_ip": "0000:00FB",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "memory",
+      "meaning": "free DOS memory",
+      "local_register": "ah\u003d49h",
+      "ghidra_address": "1000:00fb",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:0000",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 5893,
+      "cs_ip": "0000:0105",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "dos",
+      "meaning": "DOS API; check AH",
+      "ghidra_address": "1000:0105",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:0000",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 5902,
+      "cs_ip": "0000:010E",
+      "bytes": "cd 1a",
+      "instruction": "int    0x1a",
+      "subsystem": "timing",
+      "meaning": "read BIOS tick count",
+      "local_register": "ah\u003d0h",
+      "ghidra_address": "1000:010e",
+      "ghidra_instruction": "INT 0x1a",
+      "function_entry": "1000:0000",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 6002,
+      "cs_ip": "0000:0172",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "dos",
+      "meaning": "DOS API; check AH",
+      "ghidra_address": "1000:0172",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:016b",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 6017,
+      "cs_ip": "0000:0181",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "system",
+      "meaning": "read interrupt vector",
+      "local_register": "ax\u003d3500h",
+      "ghidra_address": "1000:0181",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:017d",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 6030,
+      "cs_ip": "0000:018E",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "system",
+      "meaning": "read interrupt vector",
+      "local_register": "ax\u003d3504h",
+      "ghidra_address": "1000:018e",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:017d",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 6043,
+      "cs_ip": "0000:019B",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "system",
+      "meaning": "read interrupt vector",
+      "local_register": "ax\u003d3505h",
+      "ghidra_address": "1000:019b",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:017d",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 6056,
+      "cs_ip": "0000:01A8",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "system",
+      "meaning": "read interrupt vector",
+      "local_register": "ax\u003d3506h",
+      "ghidra_address": "1000:01a8",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:017d",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 6076,
+      "cs_ip": "0000:01BC",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "dos",
+      "meaning": "DOS API; check AH",
+      "ghidra_address": "1000:01bc",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:017d",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 6088,
+      "cs_ip": "0000:01C8",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "dos",
+      "meaning": "DOS API; check AH",
+      "ghidra_address": "1000:01c8",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:01c0",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 6099,
+      "cs_ip": "0000:01D3",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "dos",
+      "meaning": "DOS API; check AH",
+      "ghidra_address": "1000:01d3",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:01c0",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 6110,
+      "cs_ip": "0000:01DE",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "dos",
+      "meaning": "DOS API; check AH",
+      "ghidra_address": "1000:01de",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:01c0",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 6121,
+      "cs_ip": "0000:01E9",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "dos",
+      "meaning": "DOS API; check AH",
+      "ghidra_address": "1000:01e9",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:01c0",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 6263,
+      "cs_ip": "0000:0277",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "dos",
+      "meaning": "DOS API; check AH",
+      "ghidra_address": "1000:0277",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:0272",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 6311,
+      "cs_ip": "0000:02A7",
+      "bytes": "cd 66",
+      "instruction": "int    0x66",
+      "subsystem": "interrupt",
+      "meaning": "unclassified vector",
+      "ghidra_address": "1000:02a7",
+      "ghidra_instruction": "INT 0x66",
+      "function_entry": "1000:027a",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 6339,
+      "cs_ip": "0000:02C3",
+      "bytes": "cd 66",
+      "instruction": "int    0x66",
+      "subsystem": "interrupt",
+      "meaning": "unclassified vector",
+      "ghidra_address": "1000:02c3",
+      "ghidra_instruction": "INT 0x66",
+      "function_entry": "1000:02b8",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 6510,
+      "cs_ip": "0000:036E",
+      "bytes": "cd 66",
+      "instruction": "int    0x66",
+      "subsystem": "interrupt",
+      "meaning": "unclassified vector",
+      "local_register": "ax\u003d695h",
+      "ghidra_address": "1000:036e",
+      "ghidra_instruction": "INT 0x66",
+      "function_entry": "1000:0363",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 6598,
+      "cs_ip": "0000:03C6",
+      "bytes": "cd 66",
+      "instruction": "int    0x66",
+      "subsystem": "interrupt",
+      "meaning": "unclassified vector",
+      "local_register": "ax\u003d701h",
+      "ghidra_address": "1000:03c6",
+      "ghidra_instruction": "INT 0x66",
+      "function_entry": "1000:03a4",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 9908,
+      "cs_ip": "0000:10B4",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "dos",
+      "meaning": "DOS API; check AH",
+      "ghidra_address": "1000:10b4",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:1098",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 10193,
+      "cs_ip": "0000:11D1",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "dos",
+      "meaning": "DOS API; check AH",
+      "ghidra_address": "1000:11d1",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:11af",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 16941,
+      "cs_ip": "0000:2C2D",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "dos",
+      "meaning": "DOS API; check AH",
+      "ghidra_address": "1000:2c2d",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:2c1b",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 18536,
+      "cs_ip": "0000:3268",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "dos",
+      "meaning": "DOS API; check AH",
+      "ghidra_address": "1000:3268",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:325d",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 18834,
+      "cs_ip": "0000:3392",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "dos",
+      "meaning": "DOS API; check AH",
+      "ghidra_address": "1000:3392",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:3383",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 18896,
+      "cs_ip": "0000:33D0",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "dos",
+      "meaning": "DOS API; check AH",
+      "ghidra_address": "1000:33d0",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:33c8",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 20811,
+      "cs_ip": "0000:3B4B",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "dos",
+      "meaning": "DOS API; check AH",
+      "ghidra_address": "1000:3b4b",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:3b3f",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 20838,
+      "cs_ip": "0000:3B66",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "files",
+      "meaning": "write handle",
+      "local_register": "ah\u003d40h",
+      "ghidra_address": "1000:3b66",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:3b5a",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 21251,
+      "cs_ip": "0000:3D03",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "files",
+      "meaning": "open file or device",
+      "local_register": "ah\u003d3Dh",
+      "ghidra_address": "1000:3d03",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:3cdb",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 25325,
+      "cs_ip": "0000:4CED",
+      "bytes": "cd 21",
+      "instruction": "int    0x21",
+      "subsystem": "dos",
+      "meaning": "DOS API; check AH",
+      "ghidra_address": "1000:4ced",
+      "ghidra_instruction": "INT 0x21",
+      "function_entry": "1000:4ccb",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 26916,
+      "cs_ip": "04D8:05A4",
+      "bytes": "e6 43",
+      "instruction": "out    0x43,al",
+      "subsystem": "timing",
+      "meaning": "PIT control; inspect selected channel",
+      "ghidra_address": "14d8:05a4",
+      "ghidra_instruction": "OUT 0x43,AL",
+      "function_entry": "14d8:059a",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 26927,
+      "cs_ip": "04D8:05AF",
+      "bytes": "e6 40",
+      "instruction": "out    0x40,al",
+      "subsystem": "timing",
+      "meaning": "PIT channel 0",
+      "ghidra_address": "14d8:05af",
+      "ghidra_instruction": "OUT 0x40,AL",
+      "function_entry": "14d8:059a",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 26933,
+      "cs_ip": "04D8:05B5",
+      "bytes": "e6 40",
+      "instruction": "out    0x40,al",
+      "subsystem": "timing",
+      "meaning": "PIT channel 0",
+      "ghidra_address": "14d8:05b5",
+      "ghidra_instruction": "OUT 0x40,AL",
+      "function_entry": "14d8:059a",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 45001,
+      "cs_ip": "08E2:0BA9",
+      "bytes": "cd 10",
+      "instruction": "int    0x10",
+      "subsystem": "video",
+      "meaning": "BIOS video service",
+      "ghidra_address": "18e2:0ba9",
+      "ghidra_instruction": "INT 0x10",
+      "function_entry": "18e2:0b9c",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 73975,
+      "cs_ip": "10A5:00A7",
+      "bytes": "cd 67",
+      "instruction": "int    0x67",
+      "subsystem": "memory",
+      "meaning": "expanded memory manager service",
+      "local_register": "ah\u003d44h",
+      "ghidra_address": "20a5:00a7",
+      "ghidra_instruction": "INT 0x67",
+      "function_entry": "20a5:008b",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 93934,
+      "cs_ip": "12FC:292E",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:292e",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:291b",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 93936,
+      "cs_ip": "12FC:2930",
+      "bytes": "ec",
+      "instruction": "in     al,dx",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2930",
+      "ghidra_instruction": "IN AL,DX",
+      "function_entry": "22fc:291b",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 93939,
+      "cs_ip": "12FC:2933",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2933",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:291b",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 93947,
+      "cs_ip": "12FC:293B",
+      "bytes": "ef",
+      "instruction": "out    dx,ax",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:293b",
+      "ghidra_instruction": "OUT DX,AX",
+      "function_entry": "22fc:291b",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94063,
+      "cs_ip": "12FC:29AF",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:29af",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:291b",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94065,
+      "cs_ip": "12FC:29B1",
+      "bytes": "ec",
+      "instruction": "in     al,dx",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:29b1",
+      "ghidra_instruction": "IN AL,DX",
+      "function_entry": "22fc:291b",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94068,
+      "cs_ip": "12FC:29B4",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:29b4",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:291b",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94129,
+      "cs_ip": "12FC:29F1",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:29f1",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94135,
+      "cs_ip": "12FC:29F7",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:29f7",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94146,
+      "cs_ip": "12FC:2A02",
+      "bytes": "ef",
+      "instruction": "out    dx,ax",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2a02",
+      "ghidra_instruction": "OUT DX,AX",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94154,
+      "cs_ip": "12FC:2A0A",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2a0a",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94158,
+      "cs_ip": "12FC:2A0E",
+      "bytes": "8e c0",
+      "instruction": "mov    es,ax",
+      "subsystem": "video",
+      "meaning": "possible video memory segment B000h",
+      "local_register": "ax\u003dB000h",
+      "ghidra_address": "22fc:2a0e",
+      "ghidra_instruction": "MOV ES,AX",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94209,
+      "cs_ip": "12FC:2A41",
+      "bytes": "cd 10",
+      "instruction": "int    0x10",
+      "subsystem": "video",
+      "meaning": "set video mode (AL selects mode)",
+      "local_register": "ah\u003d0h",
+      "ghidra_address": "22fc:2a41",
+      "ghidra_instruction": "INT 0x10",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94224,
+      "cs_ip": "12FC:2A50",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2a50",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94226,
+      "cs_ip": "12FC:2A52",
+      "bytes": "ec",
+      "instruction": "in     al,dx",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2a52",
+      "ghidra_instruction": "IN AL,DX",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94229,
+      "cs_ip": "12FC:2A55",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2a55",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94233,
+      "cs_ip": "12FC:2A59",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2a59",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94235,
+      "cs_ip": "12FC:2A5B",
+      "bytes": "ec",
+      "instruction": "in     al,dx",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2a5b",
+      "ghidra_instruction": "IN AL,DX",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94240,
+      "cs_ip": "12FC:2A60",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2a60",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94246,
+      "cs_ip": "12FC:2A66",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2a66",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94248,
+      "cs_ip": "12FC:2A68",
+      "bytes": "ec",
+      "instruction": "in     al,dx",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2a68",
+      "ghidra_instruction": "IN AL,DX",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94251,
+      "cs_ip": "12FC:2A6B",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2a6b",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94255,
+      "cs_ip": "12FC:2A6F",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2a6f",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94257,
+      "cs_ip": "12FC:2A71",
+      "bytes": "ec",
+      "instruction": "in     al,dx",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2a71",
+      "ghidra_instruction": "IN AL,DX",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94260,
+      "cs_ip": "12FC:2A74",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2a74",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94266,
+      "cs_ip": "12FC:2A7A",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2a7a",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94268,
+      "cs_ip": "12FC:2A7C",
+      "bytes": "ec",
+      "instruction": "in     al,dx",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2a7c",
+      "ghidra_instruction": "IN AL,DX",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94271,
+      "cs_ip": "12FC:2A7F",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2a7f",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94275,
+      "cs_ip": "12FC:2A83",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2a83",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94277,
+      "cs_ip": "12FC:2A85",
+      "bytes": "ec",
+      "instruction": "in     al,dx",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2a85",
+      "ghidra_instruction": "IN AL,DX",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94280,
+      "cs_ip": "12FC:2A88",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2a88",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94288,
+      "cs_ip": "12FC:2A90",
+      "bytes": "ef",
+      "instruction": "out    dx,ax",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2a90",
+      "ghidra_instruction": "OUT DX,AX",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94292,
+      "cs_ip": "12FC:2A94",
+      "bytes": "8e c0",
+      "instruction": "mov    es,ax",
+      "subsystem": "video",
+      "meaning": "possible video memory segment A000h",
+      "local_register": "ax\u003dA000h",
+      "ghidra_address": "22fc:2a94",
+      "ghidra_instruction": "MOV ES,AX",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94307,
+      "cs_ip": "12FC:2AA3",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2aa3",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94309,
+      "cs_ip": "12FC:2AA5",
+      "bytes": "ec",
+      "instruction": "in     al,dx",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2aa5",
+      "ghidra_instruction": "IN AL,DX",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94312,
+      "cs_ip": "12FC:2AA8",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2aa8",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94318,
+      "cs_ip": "12FC:2AAE",
+      "bytes": "ef",
+      "instruction": "out    dx,ax",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2aae",
+      "ghidra_instruction": "OUT DX,AX",
+      "function_entry": "22fc:29d3",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94418,
+      "cs_ip": "12FC:2B12",
+      "bytes": "ec",
+      "instruction": "in     al,dx",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2b12",
+      "ghidra_instruction": "IN AL,DX",
+      "function_entry": "22fc:2afd",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 94423,
+      "cs_ip": "12FC:2B17",
+      "bytes": "ec",
+      "instruction": "in     al,dx",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:2b17",
+      "ghidra_instruction": "IN AL,DX",
+      "function_entry": "22fc:2afd",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99081,
+      "cs_ip": "12FC:3D49",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:3d49",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:3a79",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99083,
+      "cs_ip": "12FC:3D4B",
+      "bytes": "ec",
+      "instruction": "in     al,dx",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:3d4b",
+      "ghidra_instruction": "IN AL,DX",
+      "function_entry": "22fc:3a79",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99086,
+      "cs_ip": "12FC:3D4E",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:3d4e",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:3a79",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99094,
+      "cs_ip": "12FC:3D56",
+      "bytes": "ef",
+      "instruction": "out    dx,ax",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:3d56",
+      "ghidra_instruction": "OUT DX,AX",
+      "function_entry": "22fc:3a79",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99126,
+      "cs_ip": "12FC:3D76",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:3d76",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:3a79",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99128,
+      "cs_ip": "12FC:3D78",
+      "bytes": "ec",
+      "instruction": "in     al,dx",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:3d78",
+      "ghidra_instruction": "IN AL,DX",
+      "function_entry": "22fc:3a79",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99131,
+      "cs_ip": "12FC:3D7B",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:3d7b",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:3a79",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99149,
+      "cs_ip": "12FC:3D8D",
+      "bytes": "ef",
+      "instruction": "out    dx,ax",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03CEh",
+      "local_register": "dx\u003d3CEh",
+      "ghidra_address": "22fc:3d8d",
+      "ghidra_instruction": "OUT DX,AX",
+      "function_entry": "22fc:3a79",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99172,
+      "cs_ip": "12FC:3DA4",
+      "bytes": "ef",
+      "instruction": "out    dx,ax",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C4h",
+      "local_register": "dx\u003d3C4h",
+      "ghidra_address": "22fc:3da4",
+      "ghidra_instruction": "OUT DX,AX",
+      "function_entry": "22fc:3a79",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99223,
+      "cs_ip": "12FC:3DD7",
+      "bytes": "ef",
+      "instruction": "out    dx,ax",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C4h",
+      "local_register": "dx\u003d3C4h",
+      "ghidra_address": "22fc:3dd7",
+      "ghidra_instruction": "OUT DX,AX",
+      "function_entry": "22fc:3a79",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99243,
+      "cs_ip": "12FC:3DEB",
+      "bytes": "ef",
+      "instruction": "out    dx,ax",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03CEh",
+      "local_register": "dx\u003d3CEh",
+      "ghidra_address": "22fc:3deb",
+      "ghidra_instruction": "OUT DX,AX",
+      "function_entry": "22fc:3a79",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99392,
+      "cs_ip": "12FC:3E80",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:3e80",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:3a79",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99394,
+      "cs_ip": "12FC:3E82",
+      "bytes": "ec",
+      "instruction": "in     al,dx",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:3e82",
+      "ghidra_instruction": "IN AL,DX",
+      "function_entry": "22fc:3a79",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99397,
+      "cs_ip": "12FC:3E85",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:3e85",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:3a79",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99550,
+      "cs_ip": "12FC:3F1E",
+      "bytes": "ef",
+      "instruction": "out    dx,ax",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:3f1e",
+      "ghidra_instruction": "OUT DX,AX",
+      "function_entry": "22fc:3a79",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99554,
+      "cs_ip": "12FC:3F22",
+      "bytes": "ef",
+      "instruction": "out    dx,ax",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:3f22",
+      "ghidra_instruction": "OUT DX,AX",
+      "function_entry": "22fc:3a79",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99567,
+      "cs_ip": "12FC:3F2F",
+      "bytes": "ef",
+      "instruction": "out    dx,ax",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:3f2f",
+      "ghidra_instruction": "OUT DX,AX",
+      "function_entry": "22fc:3a79",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99593,
+      "cs_ip": "12FC:3F49",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:3f49",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:3a79",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99595,
+      "cs_ip": "12FC:3F4B",
+      "bytes": "ec",
+      "instruction": "in     al,dx",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:3f4b",
+      "ghidra_instruction": "IN AL,DX",
+      "function_entry": "22fc:3a79",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99598,
+      "cs_ip": "12FC:3F4E",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:3f4e",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:3a79",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99885,
+      "cs_ip": "12FC:406D",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:406d",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:3f5f",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99909,
+      "cs_ip": "12FC:4085",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:4085",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:3f5f",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99931,
+      "cs_ip": "12FC:409B",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:409b",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:3f5f",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 99954,
+      "cs_ip": "12FC:40B2",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:40b2",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:3f5f",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 104798,
+      "cs_ip": "12FC:539E",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:539e",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:5217",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 104818,
+      "cs_ip": "12FC:53B2",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C5h",
+      "local_register": "dx\u003d3C5h",
+      "ghidra_address": "22fc:53b2",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:5217",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 104893,
+      "cs_ip": "12FC:53FD",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C5h",
+      "local_register": "dx\u003d3C5h",
+      "ghidra_address": "22fc:53fd",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:5217",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 108967,
+      "cs_ip": "12FC:63E7",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:63e7",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:6290",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 109314,
+      "cs_ip": "12FC:6542",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C5h",
+      "local_register": "dx\u003d3C5h",
+      "ghidra_address": "22fc:6542",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:6290",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 109417,
+      "cs_ip": "12FC:65A9",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C5h",
+      "local_register": "dx\u003d3C5h",
+      "ghidra_address": "22fc:65a9",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:6290",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 109520,
+      "cs_ip": "12FC:6610",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C5h",
+      "local_register": "dx\u003d3C5h",
+      "ghidra_address": "22fc:6610",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:6290",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 109620,
+      "cs_ip": "12FC:6674",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C5h",
+      "local_register": "dx\u003d3C5h",
+      "ghidra_address": "22fc:6674",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:6290",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 110403,
+      "cs_ip": "12FC:6983",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C5h",
+      "local_register": "dx\u003d3C5h",
+      "ghidra_address": "22fc:6983",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:6290",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 110506,
+      "cs_ip": "12FC:69EA",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C5h",
+      "local_register": "dx\u003d3C5h",
+      "ghidra_address": "22fc:69ea",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:6290",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 110609,
+      "cs_ip": "12FC:6A51",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C5h",
+      "local_register": "dx\u003d3C5h",
+      "ghidra_address": "22fc:6a51",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:6290",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 110709,
+      "cs_ip": "12FC:6AB5",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C5h",
+      "local_register": "dx\u003d3C5h",
+      "ghidra_address": "22fc:6ab5",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:6290",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 111218,
+      "cs_ip": "12FC:6CB2",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C5h",
+      "local_register": "dx\u003d3C5h",
+      "ghidra_address": "22fc:6cb2",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:6290",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 111322,
+      "cs_ip": "12FC:6D1A",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C5h",
+      "local_register": "dx\u003d3C5h",
+      "ghidra_address": "22fc:6d1a",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:6290",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 111426,
+      "cs_ip": "12FC:6D82",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C5h",
+      "local_register": "dx\u003d3C5h",
+      "ghidra_address": "22fc:6d82",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:6290",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 111527,
+      "cs_ip": "12FC:6DE7",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C5h",
+      "local_register": "dx\u003d3C5h",
+      "ghidra_address": "22fc:6de7",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:6290",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 112190,
+      "cs_ip": "12FC:707E",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:707e",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:6f48",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 113079,
+      "cs_ip": "12FC:73F7",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C5h",
+      "local_register": "dx\u003d3C5h",
+      "ghidra_address": "22fc:73f7",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:6f48",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 113182,
+      "cs_ip": "12FC:745E",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C5h",
+      "local_register": "dx\u003d3C5h",
+      "ghidra_address": "22fc:745e",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:6f48",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 113285,
+      "cs_ip": "12FC:74C5",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C5h",
+      "local_register": "dx\u003d3C5h",
+      "ghidra_address": "22fc:74c5",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:6f48",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 113385,
+      "cs_ip": "12FC:7529",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C5h",
+      "local_register": "dx\u003d3C5h",
+      "ghidra_address": "22fc:7529",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:6f48",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 113530,
+      "cs_ip": "12FC:75BA",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C5h",
+      "local_register": "dx\u003d3C5h",
+      "ghidra_address": "22fc:75ba",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:6f48",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 113634,
+      "cs_ip": "12FC:7622",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C5h",
+      "local_register": "dx\u003d3C5h",
+      "ghidra_address": "22fc:7622",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:6f48",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 113738,
+      "cs_ip": "12FC:768A",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C5h",
+      "local_register": "dx\u003d3C5h",
+      "ghidra_address": "22fc:768a",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:6f48",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 113839,
+      "cs_ip": "12FC:76EF",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C5h",
+      "local_register": "dx\u003d3C5h",
+      "ghidra_address": "22fc:76ef",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:6f48",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 114505,
+      "cs_ip": "12FC:7989",
+      "bytes": "ef",
+      "instruction": "out    dx,ax",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03CEh",
+      "local_register": "dx\u003d3CEh",
+      "ghidra_address": "22fc:7989",
+      "ghidra_instruction": "OUT DX,AX",
+      "function_entry": "22fc:7779",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 114513,
+      "cs_ip": "12FC:7991",
+      "bytes": "ef",
+      "instruction": "out    dx,ax",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C4h",
+      "local_register": "dx\u003d3C4h",
+      "ghidra_address": "22fc:7991",
+      "ghidra_instruction": "OUT DX,AX",
+      "function_entry": "22fc:7779",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 114872,
+      "cs_ip": "12FC:7AF8",
+      "bytes": "ef",
+      "instruction": "out    dx,ax",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03CEh",
+      "local_register": "dx\u003d3CEh",
+      "ghidra_address": "22fc:7af8",
+      "ghidra_instruction": "OUT DX,AX",
+      "function_entry": "22fc:7aa0",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 114909,
+      "cs_ip": "12FC:7B1D",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:7b1d",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:7b12",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 114911,
+      "cs_ip": "12FC:7B1F",
+      "bytes": "ec",
+      "instruction": "in     al,dx",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:7b1f",
+      "ghidra_instruction": "IN AL,DX",
+      "function_entry": "22fc:7b12",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 114914,
+      "cs_ip": "12FC:7B22",
+      "bytes": "ee",
+      "instruction": "out    dx,al",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:7b22",
+      "ghidra_instruction": "OUT DX,AL",
+      "function_entry": "22fc:7b12",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 114992,
+      "cs_ip": "12FC:7B70",
+      "bytes": "ef",
+      "instruction": "out    dx,ax",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C4h",
+      "local_register": "dx\u003d3C4h",
+      "ghidra_address": "22fc:7b70",
+      "ghidra_instruction": "OUT DX,AX",
+      "function_entry": "22fc:7b12",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 115018,
+      "cs_ip": "12FC:7B8A",
+      "bytes": "ef",
+      "instruction": "out    dx,ax",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:7b8a",
+      "ghidra_instruction": "OUT DX,AX",
+      "function_entry": "22fc:7b12",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 115081,
+      "cs_ip": "12FC:7BC9",
+      "bytes": "ef",
+      "instruction": "out    dx,ax",
+      "subsystem": "hardware",
+      "meaning": "I/O port 03C4h",
+      "local_register": "dx\u003d3C4h",
+      "ghidra_address": "22fc:7bc9",
+      "ghidra_instruction": "OUT DX,AX",
+      "function_entry": "22fc:7b90",
+      "map_status": "mapped"
+    },
+    {
+      "file_offset": 115157,
+      "cs_ip": "12FC:7C15",
+      "bytes": "ef",
+      "instruction": "out    dx,ax",
+      "subsystem": "hardware",
+      "meaning": "I/O via unresolved DX",
+      "ghidra_address": "22fc:7c15",
+      "ghidra_instruction": "OUT DX,AX",
+      "function_entry": "22fc:7b90",
+      "map_status": "mapped"
+    }
+  ]
+}

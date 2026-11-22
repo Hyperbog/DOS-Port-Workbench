@@ -1,0 +1,23 @@
+event,kind,guest_cs_ip,ghidra_cs_ip,detail
+1,image_entry,01A3:0000,1000:0000,psp=0193 image=01A3
+2,name_lookup,080B:03CC,1668:03CC,name=phase-one
+3,create_program,080B:041D,1668:041D,slot=2000 class=2932
+4,send_site,0D05:0071,1B62:0071,receiver=2000 message=0 selector=FFFF
+5,dispatch_entry,1298:08F2,20F5:08F2,ordinal=1 receiver=2000 message=0 selector=FFFF return=0D05:0076
+6,handler_match,1298:0991,20F5:0991,message=0 header=0369
+7,handler_frame,1298:09D5,20F5:09D5,bytecode=38DE:0369 auto_bytes=2
+8,opcode_fetch,1298:09DF,20F5:09DF,bytecode=38DE:036B op=1D native_ip=0D79
+9,constant_op,1298:0D79,20F5:0D79,operand=0
+10,opcode_fetch,1298:0D89,20F5:0D89,bytecode=38DE:036D op=3C native_ip=1306
+11,static_written,1298:131A,20F5:131A,address=3952:0002 value=00
+12,opcode_fetch,1298:1323,20F5:1323,bytecode=38DE:0370 op=1D native_ip=0D79
+13,constant_op,1298:0D79,20F5:0D79,operand=0
+14,opcode_fetch,1298:0D89,20F5:0D89,bytecode=38DE:0372 op=3C native_ip=1306
+15,static_written,1298:131A,20F5:131A,address=3952:0003 value=00
+16,opcode_fetch,1298:1323,20F5:1323,bytecode=38DE:0375 op=20 native_ip=0DBF
+17,opcode_fetch,1298:0DE0,20F5:0DE0,bytecode=38DE:0378 op=04 native_ip=0A7A
+18,opcode_fetch,1298:0A87,20F5:0A87,bytecode=38DE:0379 op=1D native_ip=0D79
+19,constant_op,1298:0D79,20F5:0D79,operand=0
+20,opcode_fetch,1298:0D89,20F5:0D89,bytecode=38DE:037B op=21 native_ip=0DEA
+21,native_call,1298:0E3F,20F5:0E3F,target=0D5C:07F3 argc=1 argument=00000000
+22,native_entry,0D5C:07F3,1BB9:07F3,return=1298:0E42 argc=1 argument=00000000

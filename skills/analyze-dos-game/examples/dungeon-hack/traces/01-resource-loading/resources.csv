@@ -1,0 +1,6 @@
+id,name,tbl_offset,res_header,res_payload,bytes,tbl_read_event,header_read_event,payload_read_events,payload_sha256
+0,Resource-name dictionary,0x0000,0x69AB53,0x69AB5F,65449,5,7,9 10,7ad058cab184ceb6b875f953dda4d3cc36fd987b0029534daf12b02620231b98
+3,Runtime-function dictionary,0x000C,0x6BBCB1,0x6BBCBD,5758,12,14,16,dc017ef74430252beb38a4e3d081228e505c6b7326da835a2fcaea99963aebb4
+2932,phase-one,0x2DD0,0x68770C,0x687718,1121,18,20,22,c2cbeca1f8108abb43b68c5d400c74238303868f4a1aa4a8a8ab2d9116c30b74
+2930,phase-one.IMPT,0x2DC8,0x6874A3,0x6874AF,448,24,26,28,661a726ff46d0b185d141c147e8f6b78d0459e19dae40c678b4601f075ca5c19
+2931,phase-one.EXPT,0x2DCC,0x68767B,0x687687,121,30,32,34,319fa6d4c4a2aec0f38917a975e4fd79f5c901125ea444e43c1412a99ed11f04

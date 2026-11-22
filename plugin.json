@@ -1,0 +1,34 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "author": {
+    "name": "B D"
+  },
+  "description": "Inspect DOS game binaries, review distribution files and plan a native port from evidence.",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "category": "Developer Tools",
+        "composerIcon": "./assets/icon.png",
+        "defaultPrompt": [
+          "Analyze this DOS game and show me the first native subsystem to port.",
+          "Review this game folder and identify which files a native build needs.",
+          "Show the DOS, BIOS and hardware calls in this executable with their offsets."
+        ],
+        "developerName": "B D",
+        "displayName": "DOS Port Workbench",
+        "logo": "./assets/icon.png",
+        "longDescription": "Analyze a DOS game folder, ZIP or executable. Locate platform calls in 16-bit code, identify files to retain or review, create a filtered copy, and select a testable first step for a native port.",
+        "shortDescription": "Analyze DOS games for porting"
+      }
+    }
+  },
+  "keywords": [
+    "DOS",
+    "game preservation",
+    "reverse engineering",
+    "native port",
+    "SDL3"
+  ],
+  "name": "dos-port-workbench",
+  "version": "0.2.0"
+}
