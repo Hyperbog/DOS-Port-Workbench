@@ -1,4 +1,4 @@
-"""Common checks for a Dungeon Hack native return followed by a zero-argument import call."""
+"""Verify a phase-one native return and the next call, including inline byte arguments."""
 import argparse
 import csv
 import hashlib
@@ -11,8 +11,13 @@ HASHES = {
     "HACK.RES": "207eaf4081eee453c718fc8f761a707ab5c36bf974255185e2bc90ebe84cac66",
     "HACK.TBL": "5ad8586f21908e791ef27a357a35f11e64022af054c3ae15cc4d803b5db59e7f",
 }
-# Byte offsets in phase-one.IMPT and the global runtime-function dictionary, respectively.
-IMPORTS = {"sound": (56, 484), "graphics": (60, 280), "interface": (64, 228)}
+# Each probe label maps to a symbol, its class import offset and its global vector offset.
+IMPORTS = {
+    "sound": ("init_sound", 56, 484),
+    "graphics": ("init_graphics", 60, 280),
+    "interface": ("init_interface", 64, 228),
+    "wipe_window": ("wipe_window", 48, 336),
+}
 
 
 def check(condition, detail):
@@ -46,7 +51,19 @@ def far(text):
     return int(segment, 16), int(offset, 16)
 
 
-def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, arguments, check_tail):
+def argument_words(arguments):
+    words = [len(arguments)]
+    for arg in arguments:
+        words.extend((arg & 0xffff, (arg >> 16) & 0xffff))
+    return words
+
+
+def sample(row, *fields):
+    return tuple(int(row[field], 16) for field in fields)
+
+
+def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, arguments, check_tail,
+                      next_arguments=()):
     paths = {p.name.upper(): p for p in game.iterdir() if p.is_file()}
     files = {}
     for name, digest in HASHES.items():
@@ -65,9 +82,12 @@ def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, a
     code = resource(2932)
     imports = dictionary(resource(names["phase-one.IMPT"]))
     functions = dictionary(resource(3))
-    import_offset, _ = IMPORTS[next_call]
-    expected_code = struct.pack("<BBBHBB", 0x21, len(arguments), 0x20, import_offset, 0x21, 0)
-    check(start == 0x687718 and code[resume_pc-2:resume_pc+5] == expected_code,
+    next_name, import_offset, _ = IMPORTS[next_call]
+    load_import = struct.pack("<BH", 0x20, import_offset)
+    literals = b"".join(bytes((0x04, 0x1d, value)) for value in next_arguments)
+    call_pc = resume_pc + len(load_import) + len(literals)
+    expected_code = bytes((0x21, len(arguments))) + load_import + literals + bytes((0x21, len(next_arguments)))
+    check(start == 0x687718 and code[resume_pc-2:call_pc+2] == expected_code,
           "phase-one call, import and call bytes")
 
     with trace.open(newline="", encoding="utf-8") as file:
@@ -75,8 +95,14 @@ def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, a
     check(rows and all(None not in row and None not in row.values() for row in rows), "Incomplete CSV record")
     points = [line.split()[1:] for line in profile.read_text(encoding="ascii").splitlines()
               if line.startswith(("start ", "watch ", "stop "))]
+    literal_points = ("fetch_constant", "fetch_after_constant")
+    if next_arguments:
+        names = [name for address, name in points]
+        first = names.index(literal_points[0])
+        check(tuple(names[first:first+2]) == literal_points, "Literal probe order")
+        points[first:first+2] = points[first:first+2] * len(next_arguments)
     check([(r["image_cs_ip"], r["point"]) for r in rows] == [tuple(p) for p in points], "Checkpoint order")
-    records = {r["point"]: r for r in rows}
+    records = {r["point"]: r for r in rows if r["point"] not in literal_points}
     base = (far(rows[0]["guest_cs_ip"])[0] - far(rows[0]["image_cs_ip"])[0]) & 0xffff
     for i, r in enumerate(rows, 1):
         rel, ip = far(r["image_cs_ip"])
@@ -84,15 +110,14 @@ def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, a
               f"Record {i} relocation or sequence")
 
     def values(point, *fields):
-        return tuple(int(records[point][field], 16) for field in fields)
+        return sample(records[point], *fields)
 
     mz = 16 * word(exe, 8)
     relocations = {mz + seg*16 + ip for ip, seg in struct.iter_unpack("<HH", exe[
         word(exe, 0x18):word(exe, 0x18) + 4*word(exe, 6)])}
     for routine in (returned, next_call):
-        name = f"init_{routine}"
+        name, local, vector_offset = IMPORTS[routine]
         point = f"{routine}_entry"
-        local, vector_offset = IMPORTS[routine]
         check((int(imports[f"C:{name}"]), int(functions[name])) == (local, vector_offset), f"{name} import")
         ptr = 0x1c8f8 + vector_offset
         seg, ip = far(records[point]["image_cs_ip"])
@@ -109,9 +134,7 @@ def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, a
         instruction(point, raw)
 
     vm_cs, vm_ip = far(records["vm_resume"]["guest_cs_ip"])
-    frame = [vm_ip, vm_cs, len(arguments)]
-    for arg in arguments:
-        frame.extend((arg & 0xffff, arg >> 16))
+    frame = [vm_ip, vm_cs, *argument_words(arguments)]
     fields = [f"stack{i}" for i in range(len(frame))]
     for point in (entry, retf):
         check(values(point, *fields) == tuple(frame), f"{point} saved return and arguments")
@@ -125,31 +148,67 @@ def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, a
     for point in ("vm_resume", "store_low", "store_high", "result_stored"):
         check(values(point, "dx", "ax") == (dx, ax), f"DX:AX at {point}")
     slot = values("result_stored", "es", "di")
-    for r in rows[int(records["store_low"]["event"])-1:]:
-        check(values(r["point"], "es", "di") == slot, f"VM slot at {r['point']}")
-    before, = values("store_low", "es_di_dword")
+
+    def check_slot(row, depth, value):
+        expected = (slot[0], (slot[1] - 4*depth) & 0xffff, value)
+        check(sample(row, "es", "di", "es_di_dword") == expected, f"VM slot at event {row['event']}")
+
     original_cs, original_ip = far(records[entry]["guest_cs_ip"])
-    check(before == (original_cs << 16 | original_ip), f"Original {returned} pointer in slot")
-    check(values("store_high", "es_di_dword") == ((before & 0xffff0000) | ax,), "Low-word store")
+    check_slot(records["store_low"], 0, original_cs << 16 | original_ip)
+    check_slot(records["store_high"], 0, original_cs << 16 | ax)
     for point in ("result_stored", "fetch_import", "import_operand", "replace_low"):
-        check(values(point, "es_di_dword") == (result,), f"Return value at {point}")
+        check_slot(records[point], 0, result)
 
     code_seg, = values("fetch_import", "ds")
-    for point, delta in (("fetch_import", 0), ("import_operand", 1), ("fetch_call", 3), ("call_argc", 4)):
-        pc = resume_pc + delta
-        check(values(point, "ds", "si", "ds_si_dword") == (code_seg, pc, dword(code, pc)),
+
+    def check_bytecode(row, pc):
+        check(sample(row, "ds", "si", "ds_si_dword") == (code_seg, pc, dword(code, pc)),
               f"Live bytecode differs from HACK.RES at +0x{pc:04X}")
+
+    pc = resume_pc
+    sizes = {0x20: 3, 0x04: 1, 0x1d: 2, 0x21: 2}
+    for row in rows:
+        if row["point"].startswith("fetch_"):
+            check_bytecode(row, pc)
+            pc += sizes[code[pc]]
+    check(pc == call_pc+2, "All bytecodes through CALL")
+    check_bytecode(records["import_operand"], resume_pc+1)
+    check_bytecode(records["call_argc"], call_pc+1)
     target_cs, target_ip = far(records[target]["guest_cs_ip"])
+    pointer = target_cs << 16 | target_ip
     check(values("replace_low", "ds", "bx") == (target_cs, target_ip), f"Resolved {next_call} import")
-    for point in ("import_stored", "fetch_call", "call_argc", "far_call", target):
-        check(values(point, "es_di_dword") == (target_cs << 16 | target_ip,), f"{next_call} pointer at {point}")
-    call_sp, count = values("far_call", "sp", "stack0")
-    check(count == 0 and values("far_call", "si", "ss") == (resume_pc+5, stack), "Next CALL 0")
-    check(values(target, "ss", "sp", "stack0", "stack1", "stack2") ==
-          (stack, (call_sp-4) & 0xffff, vm_ip, vm_cs, 0), "Next native entry and argument count")
+    after_import = "fetch_after_import" if next_arguments else "fetch_call"
+    for point in ("import_stored", after_import, "far_call", target):
+        check_slot(records[point], 0, pointer)
+
+    literal_rows = [r for r in rows if r["point"] in literal_points]
+    for i, arg in enumerate(next_arguments):
+        check_slot(literal_rows[2*i], i+1, 0)
+        check_slot(literal_rows[2*i+1], i+1, arg)
+    count = len(next_arguments)
+    check_slot(records["call_argc"], count, next_arguments[-1] if count else pointer)
+    vm_sp, = values("call_argc", "sp")
+    transfers = [r for r in rows if r["point"].startswith("marshal_")]
+    check(len(transfers) == count, "Native argument transfer count")
+    for i, row in enumerate(transfers):
+        remaining = count-i
+        instruction(row["point"], "26 FF 75 02 26 FF 35 83 C7 04")
+        check_slot(row, remaining, next_arguments[remaining-1])
+        check(sample(row, "ss", "sp", "cx") == (stack, (vm_sp-4*i) & 0xffff, remaining),
+              f"Native argument transfer {i+1}")
+
+    words = argument_words(next_arguments)
+    call_sp = (vm_sp-2*len(words)) & 0xffff
+    call_fields = [f"stack{i}" for i in range(len(words))]
+    check(values("far_call", "si", "ss", "sp", *call_fields) == (call_pc+2, stack, call_sp, *words),
+          "Native call site and arguments")
+    entry_fields = [f"stack{i}" for i in range(2+len(words))]
+    check(values(target, "ss", "sp", *entry_fields) == (stack, (call_sp-4) & 0xffff, vm_ip, vm_cs, *words),
+          "Next native entry, return address and arguments")
     args = ", ".join(map(str, arguments))
-    print(f"Verified init_{returned}({args}), DX:AX = {result:08X}, slot {slot[0]:04X}:{slot[1]:04X}, "
-          f"then init_{next_call}() at {target_cs:04X}:{target_ip:04X}.")
+    next_args = ", ".join(map(str, next_arguments))
+    print(f"Verified {IMPORTS[returned][0]}({args}), DX:AX = {result:08X}, slot {slot[0]:04X}:{slot[1]:04X}, "
+          f"then {next_name}({next_args}) at {target_cs:04X}:{target_ip:04X}.")
 
 
 def run_cli(verify, directory, description):

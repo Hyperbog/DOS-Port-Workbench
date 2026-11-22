@@ -13,6 +13,7 @@ static void dpw_observe_instruction() {
     static const char *profile = getenv("DPW_PROFILE"), *output = getenv("DPW_TRACE");
     static bool loaded, identified, started, finished;
     static unsigned entry_cs, entry_ip, sig_offset, signature, base, count, seq;
+    static unsigned stack_words = 5;
     static DpwPoint points[128];
     static FILE *log;
     if (!profile || !output || finished) return;
@@ -27,6 +28,19 @@ static void dpw_observe_instruction() {
         unsigned starts = 0, stops = 0;
         while (fgets(line, sizeof(line), f)) {
             if (line[0] == '#' || line[0] == '\n' || line[0] == '\r') continue;
+            char directive[16];
+            int arg_offset;
+            if (sscanf(line, "%15s %n", directive, &arg_offset) == 1 && !strcmp(directive, "stack_words")) {
+                const char *arg = line + arg_offset;
+                char *end;
+                const unsigned long words = strtoul(arg, &end, 10);
+                if (*arg < '0' || *arg > '9' || words == 0 || words > 0x8000u ||
+                    end[strspn(end, " \t\r\n")] != '\0') {
+                    fprintf(stderr, "Expected 1 to 32768 stack words\n"); exit(2);
+                }
+                stack_words = (unsigned)words;
+                continue;
+            }
             if (count == sizeof(points)/sizeof(points[0])) { fprintf(stderr, "Too many points\n"); exit(2); }
             DpwPoint &p = points[count++];
             if (sscanf(line, "%7s %4x:%4x %47s", p.mode, &p.cs, &p.ip, p.label) != 4) {
@@ -57,15 +71,16 @@ static void dpw_observe_instruction() {
             log = fopen(output, "w");
             if (!log) { perror("DPW_TRACE"); exit(2); }
             setvbuf(log, NULL, _IOLBF, 0);
-            fputs("event,point,image_cs_ip,guest_cs_ip,ax,bx,cx,dx,si,di,bp,ss,sp,ds,es,"
-                  "stack0,stack1,stack2,stack3,stack4,es_di_dword,ds_si_dword\n", log);
+            fputs("event,point,image_cs_ip,guest_cs_ip,ax,bx,cx,dx,si,di,bp,ss,sp,ds,es", log);
+            for (unsigned j = 0; j < stack_words; ++j) fprintf(log, ",stack%u", j);
+            fputs(",es_di_dword,ds_si_dword\n", log);
             started = true;
         }
         fprintf(log, "%u,%s,%04X:%04X,%04X:%04X,%04X,%04X,%04X,%04X,%04X,%04X,%04X,%04X,%04X,%04X,%04X",
                 ++seq, p.label, rel, ip, seg, ip, (unsigned)reg_ax, (unsigned)reg_bx, (unsigned)reg_cx,
                 (unsigned)reg_dx, (unsigned)reg_si, (unsigned)reg_di, (unsigned)reg_bp,
                 stack_seg, (unsigned)reg_sp, (unsigned)SegValue(ds), (unsigned)SegValue(es));
-        for (unsigned j = 0; j < 5; ++j)
+        for (unsigned j = 0; j < stack_words; ++j)
             fprintf(log, ",%04X", (unsigned)real_readw(stack_seg, (Bit16u)(reg_sp + 2*j)));
         fprintf(log, ",%08X,%08X\n", (unsigned)real_readd(SegValue(es), reg_di),
                 (unsigned)real_readd(SegValue(ds), reg_si));
