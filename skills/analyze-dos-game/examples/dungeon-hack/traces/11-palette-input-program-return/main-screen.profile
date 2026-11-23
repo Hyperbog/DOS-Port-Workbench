@@ -1,0 +1,43 @@
+image 0000:0000 0008 21CD30B4
+stack_words 7
+start 0B62:00A8 create_program_entry stack5=07AE
+watch 0B62:001A free_search
+watch 0B62:002B test_slot
+watch 0B62:0032 occupied_slot
+watch 0B62:0040 select_slot
+watch 0B62:00C6 save_selected
+watch 0B62:00CC slot_saved
+watch 0B62:0044 create_helper
+watch 0B62:0065 store_instance
+watch 0B62:0071 send_create
+watch 10F5:08F2 create_dispatch
+watch 10F5:0913 instance_loaded
+watch 10F5:097A lookup_miss
+watch 10F5:09ED miss_retf
+watch 0B62:0076 create_return
+watch 0B62:011D load_slot
+watch 0B62:0124 create_program_retf
+watch 10F5:0E42 vm_resume
+watch 10F5:0E4F store_low
+watch 10F5:0E52 store_high
+watch 10F5:0E56 result_stored
+watch 10F5:0E66 fetch_save
+watch 10F5:1156 local_base
+watch 10F5:1162 store_local
+watch 10F5:116B fetch_static
+watch 10F5:128E read_static
+watch 10F5:12A2 fetch_push
+watch 10F5:0A87 fetch_pushed
+watch 10F5:0D89 fetch_eq
+watch 10F5:0CCE fetch_brf
+watch 10F5:0A14 test_condition
+watch 10F5:0A30 fetch_import
+watch 10F5:0DD0 resolve_import
+watch 10F5:0DE0 fetch_args
+watch 10F5:18DC fetch_bra
+watch 10F5:0A3A branch_over_string
+watch 10F5:0A3E fetch_call
+watch 10F5:0DEA call_argc
+watch 10F5:0E00 marshal_argument
+watch 10F5:0E3F far_call
+stop 0A4F:0DE1 envval_entry

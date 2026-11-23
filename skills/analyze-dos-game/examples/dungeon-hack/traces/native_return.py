@@ -19,6 +19,7 @@ IMPORTS = {
     "wipe_window": ("wipe_window", 48, 336),
     "create_program": ("create_program", 0, 520),
     "set_palette": ("set_palette", 12, 328),
+    "envval": ("envval", 24, 136),
 }
 LITERAL_WIDTH = {0x1d: 1, 0x1e: 2}  # SHTC and INTC
 
