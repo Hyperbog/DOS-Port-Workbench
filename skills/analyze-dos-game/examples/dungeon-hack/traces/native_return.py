@@ -81,13 +81,19 @@ def import_call_offsets(code, import_pc, import_offset, arguments):
     offsets = [import_pc]
     pc = import_pc + 3
     for argument in arguments:
+        literal_pc = pc+1
         width = LITERAL_WIDTH.get(code[pc+1])
         check(code[pc] == 0x04 and width is not None, f"Expected PUSH and a literal at +0x{pc:04X}")
         operand = code[pc+2:pc+2+width]
-        check(len(operand) == width and int.from_bytes(operand, "little") == argument,
-              f"Argument literal at +0x{pc+1:04X}")
-        offsets.extend((pc, pc+1))
+        check(len(operand) == width, f"Truncated literal at +0x{literal_pc:04X}")
+        value = int.from_bytes(operand, "little")
+        offsets.extend((pc, literal_pc))
         pc += 2 + width
+        if code[pc:pc+1] == b"\x08":  # NEG operates on the 32-bit VM slot.
+            offsets.append(pc)
+            value = -value
+            pc += 1
+        check(value == argument, f"Argument from literal at +0x{literal_pc:04X}")
     check(code[pc:pc+2] == bytes((0x21, len(arguments))), "Next CALL and argument count")
     return [*offsets, pc]
 
@@ -100,7 +106,7 @@ def read_capture(trace, profile, literal_count=0, *, expected_order=None):
               if line.startswith(("start ", "watch ", "stop "))]
     registered = {(address, name): condition for address, name, *condition in points}
     order = list(expected_order) if expected_order is not None else list(dict.fromkeys(point[1] for point in points))
-    if literal_count:
+    if literal_count and expected_order is None:
         pair = ["fetch_constant", "fetch_after_constant"]
         first = order.index(pair[0])
         check(order[first:first+2] == pair, "Literal probe order")
@@ -161,7 +167,7 @@ def check_call_frame(call_site, entry, arguments, next_pc, vm_stack, return_to):
 
 
 def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, arguments, check_tail,
-                      next_arguments=(), program_class=None, prefix=None, check_archive=None):
+                      next_arguments=(), program_class=None, prefix=None, check_archive=None, expected_order=None):
     exe, index, resource = load_game(game)
     names = dictionary(resource(0))
     check(names["phase-one"] == "2932" and names["phase-one.IMPT"] == "2930", "phase-one resource IDs")
@@ -179,7 +185,7 @@ def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, a
         exports = dictionary(resource(names[f"{program_class}.EXPT"]))
         check(exports["N:OBJECT"] == program_class, "Program class export name")
 
-    rows = read_capture(trace, profile, len(next_arguments))
+    rows = read_capture(trace, profile, len(next_arguments), expected_order=expected_order)
     target = rows[-1]["point"]
     if prefix is not None:
         earlier = read_capture(*prefix)
@@ -199,8 +205,8 @@ def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, a
     for routine, point in ((returned, entry), (next_call, target)):
         check_native_import(exe, imports, functions, routine, records[point])
 
-    def instruction(point, raw):
-        check_instruction(exe, records[point], raw)
+    def instruction(point, raw, displacement=0):
+        check_instruction(exe, records[point], raw, displacement)
 
     for point, raw in ((retf, "CB"), ("vm_resume", "8B 4E F6"), ("store_low", "26 89 05 26 89 55 02"),
                        ("replace_low", "26 89 1D 26 8C 5D 02"), ("far_call", "26 FF 1D")):
@@ -251,19 +257,29 @@ def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, a
     for point in ("import_stored", after_import, "far_call", target):
         check_slot(records[point], 0, pointer)
 
-    literal_rows = [r for r in rows if r["point"] in literal_points]
-    for i, arg in enumerate(next_arguments):
-        check_slot(literal_rows[2*i], i+1, 0)
-        check_slot(literal_rows[2*i+1], i+1, arg)
+    # Observe the completed write at the following opcode fetch, including an in-place NEG.
+    depth = value = 0
+    for pc, following in zip(fetch_offsets[1:-1], fetches[2:]):
+        opcode = code[pc]
+        if opcode == 0x04:
+            depth += 1
+            value = 0
+        elif opcode == 0x08:
+            value = (-value) & 0xffffffff
+        else:
+            width = LITERAL_WIDTH[opcode]
+            value = int.from_bytes(code[pc+1:pc+1+width], "little")
+        check_slot(following, depth, value)
+    unsigned_arguments = tuple(arg & 0xffffffff for arg in next_arguments)
     count = len(next_arguments)
-    check_slot(records["call_argc"], count, next_arguments[-1] if count else pointer)
+    check_slot(records["call_argc"], count, unsigned_arguments[-1] if count else pointer)
     vm_sp, = values("call_argc", "sp")
     transfers = [r for r in rows if r["point"].startswith("marshal_")]
     check(len(transfers) == count, "Native argument transfer count")
     for i, row in enumerate(transfers):
         remaining = count-i
         instruction(row["point"], "26 FF 75 02 26 FF 35 83 C7 04")
-        check_slot(row, remaining, next_arguments[remaining-1])
+        check_slot(row, remaining, unsigned_arguments[remaining-1])
         check(sample(row, "ss", "sp", "cx") == (stack, (vm_sp-4*i) & 0xffff, remaining),
               f"Native argument transfer {i+1}")
 
@@ -274,12 +290,15 @@ def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, a
           f"then {next_name}({next_args}) at {target_cs:04X}:{target_ip:04X}.")
 
 
-def run_cli(verify, directory, description):
-    parser = argparse.ArgumentParser(description=description)
+def run_cli(verify, directory, description, *, parser=None):
+    if parser is None:
+        parser = argparse.ArgumentParser(description=description)
     parser.add_argument("game", type=Path, help="Folder containing AESOP.EXE, HACK.RES and HACK.TBL")
     parser.add_argument("--trace", type=Path, default=directory/"trace.csv", help="Captured observer CSV")
-    args = parser.parse_args()
+    options = vars(parser.parse_args())
+    game = options.pop("game")
+    trace = options.pop("trace")
     try:
-        verify(args.game, args.trace)
+        verify(game, trace, **options)
     except (OSError, ValueError, KeyError, IndexError, struct.error) as error:
         sys.exit(f"Verification failed: {error}")
