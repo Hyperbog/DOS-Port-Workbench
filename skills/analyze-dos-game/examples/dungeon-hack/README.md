@@ -37,5 +37,6 @@ The initial trace left 28 control transfers unresolved and one path dependent on
 | [4. Graphics return](traces/04-graphics-return/TRACE.md) | `init_graphics()` returns 2 and the handler calls `init_interface()` with zero arguments | `py verify_return.py "D:\Games\Dungeon Hack"` |
 | [5. Interface return](traces/05-interface-return/TRACE.md) | AESOP stores the raw interface result, then calls `wipe_window(1, 0)`. Both arguments are visible at native entry. | `py verify_return.py "D:\Games\Dungeon Hack"` |
 | [6. Window wipe return](traces/06-wipe-window-return/TRACE.md) | `phase-one` replaces the wipe result and calls `create_program(2005, 2922)`, requesting the `magic` class in slot 2005. | `py verify_return.py "D:\Games\Dungeon Hack"` |
+| [7. Magic program return](traces/07-magic-program-return/TRACE.md) | `magic.create` returns zero to the helper. `create_program` returns slot 2005 to `phase-one`, which calls `create_program(2003, 2929)` for `tables`. | `py verify_return.py "D:\Games\Dungeon Hack"` |
 
-Each verifier reads your local game files and the checked-in capture. The native-return checkpoints use the [same verification code](traces/native_return.py) for the bytecode, stack and function pointers. The latest trace ends at the `create_program` entry for `magic`.
+Each verifier reads your local game files and the checked-in capture. The native-return checkpoints use the [same verification code](traces/native_return.py) for the bytecode, stack and function pointers. The latest trace ends at the `create_program` entry for `tables`.

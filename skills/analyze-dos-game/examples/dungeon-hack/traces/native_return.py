@@ -81,8 +81,30 @@ def call_fetch_offsets(code, resume_pc, incoming_count, import_offset, arguments
     return [*offsets, pc]
 
 
+def read_capture(trace, profile, literal_count=0):
+    with trace.open(newline="", encoding="utf-8") as file:
+        rows = list(csv.DictReader(file))
+    check(rows and all(None not in row and None not in row.values() for row in rows), "Incomplete CSV record")
+    points = [tuple(line.split()[1:]) for line in profile.read_text(encoding="ascii").splitlines()
+              if line.startswith(("start ", "watch ", "stop "))]
+    registered = set(points)
+    order = list(dict.fromkeys(name for address, name in points))
+    if literal_count:
+        pair = ["fetch_constant", "fetch_after_constant"]
+        first = order.index(pair[0])
+        check(order[first:first+2] == pair, "Literal probe order")
+        order[first:first+2] = pair * literal_count
+    check([r["point"] for r in rows] == order, f"Checkpoint order in {trace.name}")
+    base = (far(rows[0]["guest_cs_ip"])[0] - far(rows[0]["image_cs_ip"])[0]) & 0xffff
+    for i, row in enumerate(rows, 1):
+        rel, ip = far(row["image_cs_ip"])
+        check((row["image_cs_ip"], row["point"]) in registered and int(row["event"]) == i and
+              far(row["guest_cs_ip"]) == ((base+rel) & 0xffff, ip), f"{trace.name} event {i} address or sequence")
+    return rows
+
+
 def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, arguments, check_tail,
-                      next_arguments=(), program_class=None):
+                      next_arguments=(), program_class=None, prefix=None, check_archive=None):
     paths = {p.name.upper(): p for p in game.iterdir() if p.is_file()}
     files = {}
     for name, digest in HASHES.items():
@@ -111,36 +133,28 @@ def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, a
         exports = dictionary(resource(names[f"{program_class}.EXPT"]))
         check(exports["N:OBJECT"] == program_class, "Program class export name")
 
-    with trace.open(newline="", encoding="utf-8") as file:
-        rows = list(csv.DictReader(file))
-    check(rows and all(None not in row and None not in row.values() for row in rows), "Incomplete CSV record")
-    points = [tuple(line.split()[1:]) for line in profile.read_text(encoding="ascii").splitlines()
-              if line.startswith(("start ", "watch ", "stop "))]
-    registered = set(points)
-    order = list(dict.fromkeys(name for address, name in points))
+    rows = read_capture(trace, profile, len(next_arguments))
+    target = rows[-1]["point"]
+    if prefix is not None:
+        earlier = read_capture(*prefix)
+        # Independent profiles number events from one. Every other field at the shared instruction must match.
+        check({**earlier[-1], "event": rows[0]["event"]} == rows[0], "Captures disagree at their shared instruction")
+        rows = earlier[:-1] + rows
     literal_points = ("fetch_constant", "fetch_after_constant")
-    if next_arguments:
-        first = order.index(literal_points[0])
-        check(tuple(order[first:first+2]) == literal_points, "Literal probe order")
-        order[first:first+2] = literal_points * len(next_arguments)
-    check([r["point"] for r in rows] == order and all((r["image_cs_ip"], r["point"]) in registered for r in rows),
-          "Checkpoint order or probe address")
     records = {r["point"]: r for r in rows if r["point"] not in literal_points}
-    base = (far(rows[0]["guest_cs_ip"])[0] - far(rows[0]["image_cs_ip"])[0]) & 0xffff
-    for i, r in enumerate(rows, 1):
-        rel, ip = far(r["image_cs_ip"])
-        check(int(r["event"]) == i and far(r["guest_cs_ip"]) == ((base+rel) & 0xffff, ip),
-              f"Record {i} relocation or sequence")
 
     def values(point, *fields):
         return sample(records[point], *fields)
 
+    if check_archive is not None:
+        check_archive(resource, names, values)
+
     mz = 16 * word(exe, 8)
     relocations = {mz + seg*16 + ip for ip, seg in struct.iter_unpack("<HH", exe[
         word(exe, 0x18):word(exe, 0x18) + 4*word(exe, 6)])}
-    for routine in (returned, next_call):
+    entry, retf = f"{returned}_entry", f"{returned}_retf"
+    for routine, point in ((returned, entry), (next_call, target)):
         name, local, vector_offset = IMPORTS[routine]
-        point = f"{routine}_entry"
         check((int(imports[f"C:{name}"]), int(functions[name])) == (local, vector_offset), f"{name} import")
         ptr = 0x1c8f8 + vector_offset
         seg, ip = far(records[point]["image_cs_ip"])
@@ -151,7 +165,6 @@ def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, a
         offset = mz + 16*seg + ip
         check(exe.startswith(bytes.fromhex(raw), offset), f"Native instructions at {point}")
 
-    entry, retf, target = f"{returned}_entry", f"{returned}_retf", f"{next_call}_entry"
     for point, raw in ((retf, "CB"), ("vm_resume", "8B 4E F6"), ("store_low", "26 89 05 26 89 55 02"),
                        ("replace_low", "26 89 1D 26 8C 5D 02"), ("far_call", "26 FF 1D")):
         instruction(point, raw)
