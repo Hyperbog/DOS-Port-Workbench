@@ -5,7 +5,8 @@
 #include <string.h>
 
 struct DpwPoint {
-    unsigned cs, ip;
+    unsigned cs, ip, stack_value;
+    int stack_index;
     char mode[8], label[48];
 };
 
@@ -43,8 +44,20 @@ static void dpw_observe_instruction() {
             }
             if (count == sizeof(points)/sizeof(points[0])) { fprintf(stderr, "Too many points\n"); exit(2); }
             DpwPoint &p = points[count++];
-            if (sscanf(line, "%7s %4x:%4x %47s", p.mode, &p.cs, &p.ip, p.label) != 4) {
+            int used;
+            if (sscanf(line, "%7s %4x:%4x %47s %n", p.mode, &p.cs, &p.ip, p.label, &used) != 4) {
                 fprintf(stderr, "Invalid profile point: %s", line); exit(2);
+            }
+            p.stack_index = -1;
+            const char *condition = line + used;
+            if (*condition && *condition != '#') {
+                char index[6], value[5];
+                if (sscanf(condition, "stack%5[0123456789]=%4[0123456789abcdefABCDEF] %n", index, value, &used) != 2 ||
+                    (condition[used] && condition[used] != '#') || atoi(index) > 32767) {
+                    fprintf(stderr, "Invalid stack condition: %s", condition); exit(2);
+                }
+                p.stack_index = atoi(index);
+                p.stack_value = (unsigned)strtoul(value, NULL, 16);
             }
             if (!strcmp(p.mode, "start")) ++starts;
             else if (!strcmp(p.mode, "stop")) ++stops;
@@ -66,8 +79,9 @@ static void dpw_observe_instruction() {
     for (unsigned i = 0; i < count; ++i) {
         const DpwPoint &p = points[i];
         if (p.cs != rel || p.ip != ip) continue;
+        if (!started && strcmp(p.mode, "start")) continue;
+        if (p.stack_index >= 0 && real_readw(stack_seg, (Bit16u)(reg_sp + 2*p.stack_index)) != p.stack_value) continue;
         if (!started) {
-            if (strcmp(p.mode, "start")) return;
             log = fopen(output, "w");
             if (!log) { perror("DPW_TRACE"); exit(2); }
             setvbuf(log, NULL, _IOLBF, 0);

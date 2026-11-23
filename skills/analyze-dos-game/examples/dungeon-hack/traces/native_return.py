@@ -64,6 +64,12 @@ def sample(row, *fields):
     return tuple(int(row[field], 16) for field in fields)
 
 
+def check_instruction(exe, row, raw, displacement=0):
+    seg, ip = far(row["image_cs_ip"])
+    offset = 16 * word(exe, 8) + 16*seg + ip + displacement
+    check(exe.startswith(bytes.fromhex(raw), offset), f"Native instructions at {row['point']}")
+
+
 def call_fetch_offsets(code, resume_pc, incoming_count, import_offset, arguments):
     prefix = struct.pack("<BBBH", 0x21, incoming_count, 0x20, import_offset)
     check(code[resume_pc-2:resume_pc+3] == prefix, "Returning CALL and next import")
@@ -85,10 +91,10 @@ def read_capture(trace, profile, literal_count=0):
     with trace.open(newline="", encoding="utf-8") as file:
         rows = list(csv.DictReader(file))
     check(rows and all(None not in row and None not in row.values() for row in rows), "Incomplete CSV record")
-    points = [tuple(line.split()[1:]) for line in profile.read_text(encoding="ascii").splitlines()
+    points = [line.partition("#")[0].split()[1:] for line in profile.read_text(encoding="ascii").splitlines()
               if line.startswith(("start ", "watch ", "stop "))]
-    registered = set(points)
-    order = list(dict.fromkeys(name for address, name in points))
+    registered = {(address, name): condition for address, name, *condition in points}
+    order = list(dict.fromkeys(point[1] for point in points))
     if literal_count:
         pair = ["fetch_constant", "fetch_after_constant"]
         first = order.index(pair[0])
@@ -98,13 +104,17 @@ def read_capture(trace, profile, literal_count=0):
     base = (far(rows[0]["guest_cs_ip"])[0] - far(rows[0]["image_cs_ip"])[0]) & 0xffff
     for i, row in enumerate(rows, 1):
         rel, ip = far(row["image_cs_ip"])
-        check((row["image_cs_ip"], row["point"]) in registered and int(row["event"]) == i and
+        key = (row["image_cs_ip"], row["point"])
+        check(key in registered and int(row["event"]) == i and
               far(row["guest_cs_ip"]) == ((base+rel) & 0xffff, ip), f"{trace.name} event {i} address or sequence")
+        for condition in registered[key]:
+            field, value = condition.split("=")
+            if field in row:
+                check(int(row[field], 16) == int(value, 16), f"{trace.name} event {i} stack condition")
     return rows
 
 
-def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, arguments, check_tail,
-                      next_arguments=(), program_class=None, prefix=None, check_archive=None):
+def load_game(game):
     paths = {p.name.upper(): p for p in game.iterdir() if p.is_file()}
     files = {}
     for name, digest in HASHES.items():
@@ -117,6 +127,12 @@ def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, a
         head = dword(index, 4 * int(number))
         return archive[head+12:head+12+dword(archive, head+8)]
 
+    return exe, index, resource
+
+
+def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, arguments, check_tail,
+                      next_arguments=(), program_class=None, prefix=None, check_archive=None):
+    exe, index, resource = load_game(game)
     names = dictionary(resource(0))
     check(names["phase-one"] == "2932" and names["phase-one.IMPT"] == "2930", "phase-one resource IDs")
     start = dword(index, 4*2932) + 12
@@ -161,9 +177,7 @@ def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, a
         check(struct.unpack_from("<HH", exe, ptr) == (ip, seg) and ptr+2 in relocations, f"{name} pointer")
 
     def instruction(point, raw):
-        seg, ip = far(records[point]["image_cs_ip"])
-        offset = mz + 16*seg + ip
-        check(exe.startswith(bytes.fromhex(raw), offset), f"Native instructions at {point}")
+        check_instruction(exe, records[point], raw)
 
     for point, raw in ((retf, "CB"), ("vm_resume", "8B 4E F6"), ("store_low", "26 89 05 26 89 55 02"),
                        ("replace_low", "26 89 1D 26 8C 5D 02"), ("far_call", "26 FF 1D")):
