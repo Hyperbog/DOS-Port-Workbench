@@ -1,4 +1,4 @@
-"""Verify a phase-one native return and the byte or word literals passed to the next call."""
+"""Shared checks for phase-one native calls, returns and their DOSBox captures."""
 import argparse
 import csv
 import hashlib
@@ -18,6 +18,7 @@ IMPORTS = {
     "interface": ("init_interface", 64, 228),
     "wipe_window": ("wipe_window", 48, 336),
     "create_program": ("create_program", 0, 520),
+    "set_palette": ("set_palette", 12, 328),
 }
 LITERAL_WIDTH = {0x1d: 1, 0x1e: 2}  # SHTC and INTC
 
@@ -71,10 +72,14 @@ def check_instruction(exe, row, raw, displacement=0):
 
 
 def call_fetch_offsets(code, resume_pc, incoming_count, import_offset, arguments):
-    prefix = struct.pack("<BBBH", 0x21, incoming_count, 0x20, import_offset)
-    check(code[resume_pc-2:resume_pc+3] == prefix, "Returning CALL and next import")
-    offsets = [resume_pc]
-    pc = resume_pc + 3
+    check(code[resume_pc-2:resume_pc] == bytes((0x21, incoming_count)), "Returning CALL and argument count")
+    return import_call_offsets(code, resume_pc, import_offset, arguments)
+
+
+def import_call_offsets(code, import_pc, import_offset, arguments):
+    check(code[import_pc:import_pc+3] == struct.pack("<BH", 0x20, import_offset), "RCRS import operand")
+    offsets = [import_pc]
+    pc = import_pc + 3
     for argument in arguments:
         width = LITERAL_WIDTH.get(code[pc+1])
         check(code[pc] == 0x04 and width is not None, f"Expected PUSH and a literal at +0x{pc:04X}")
@@ -87,14 +92,14 @@ def call_fetch_offsets(code, resume_pc, incoming_count, import_offset, arguments
     return [*offsets, pc]
 
 
-def read_capture(trace, profile, literal_count=0):
+def read_capture(trace, profile, literal_count=0, *, expected_order=None):
     with trace.open(newline="", encoding="utf-8") as file:
         rows = list(csv.DictReader(file))
     check(rows and all(None not in row and None not in row.values() for row in rows), "Incomplete CSV record")
     points = [line.partition("#")[0].split()[1:] for line in profile.read_text(encoding="ascii").splitlines()
               if line.startswith(("start ", "watch ", "stop "))]
     registered = {(address, name): condition for address, name, *condition in points}
-    order = list(dict.fromkeys(point[1] for point in points))
+    order = list(expected_order) if expected_order is not None else list(dict.fromkeys(point[1] for point in points))
     if literal_count:
         pair = ["fetch_constant", "fetch_after_constant"]
         first = order.index(pair[0])
@@ -128,6 +133,31 @@ def load_game(game):
         return archive[head+12:head+12+dword(archive, head+8)]
 
     return exe, index, resource
+
+
+def check_native_import(exe, imports, functions, routine, row):
+    name, local, vector = IMPORTS[routine]
+    check((int(imports[f"C:{name}"]), int(functions[name])) == (local, vector), f"{name} import")
+    ptr = 0x1c8f8 + vector
+    seg, ip = far(row["image_cs_ip"])
+    check(struct.unpack_from("<HH", exe, ptr) == (ip, seg), f"{name} pointer")
+    mz = 16 * word(exe, 8)
+    table = word(exe, 0x18)
+    relocations = struct.iter_unpack("<HH", exe[table:table + 4*word(exe, 6)])
+    check(any(mz + 16*s + o == ptr+2 for o, s in relocations), f"{name} pointer relocation")
+
+
+def check_call_frame(call_site, entry, arguments, next_pc, vm_stack, return_to):
+    stack, vm_sp = vm_stack
+    return_cs, return_ip = return_to
+    words = argument_words(arguments)
+    call_sp = (vm_sp-2*len(words)) & 0xffff
+    fields = [f"stack{i}" for i in range(len(words))]
+    check(sample(call_site, "si", "ss", "sp", *fields) == (next_pc, stack, call_sp, *words),
+          "Native call site and arguments")
+    fields = [f"stack{i}" for i in range(2+len(words))]
+    check(sample(entry, "ss", "sp", *fields) == (stack, (call_sp-4) & 0xffff, return_ip, return_cs, *words),
+          "Next native entry, return address and arguments")
 
 
 def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, arguments, check_tail,
@@ -165,16 +195,9 @@ def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, a
     if check_archive is not None:
         check_archive(resource, names, values)
 
-    mz = 16 * word(exe, 8)
-    relocations = {mz + seg*16 + ip for ip, seg in struct.iter_unpack("<HH", exe[
-        word(exe, 0x18):word(exe, 0x18) + 4*word(exe, 6)])}
     entry, retf = f"{returned}_entry", f"{returned}_retf"
     for routine, point in ((returned, entry), (next_call, target)):
-        name, local, vector_offset = IMPORTS[routine]
-        check((int(imports[f"C:{name}"]), int(functions[name])) == (local, vector_offset), f"{name} import")
-        ptr = 0x1c8f8 + vector_offset
-        seg, ip = far(records[point]["image_cs_ip"])
-        check(struct.unpack_from("<HH", exe, ptr) == (ip, seg) and ptr+2 in relocations, f"{name} pointer")
+        check_native_import(exe, imports, functions, routine, records[point])
 
     def instruction(point, raw):
         check_instruction(exe, records[point], raw)
@@ -244,14 +267,7 @@ def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, a
         check(sample(row, "ss", "sp", "cx") == (stack, (vm_sp-4*i) & 0xffff, remaining),
               f"Native argument transfer {i+1}")
 
-    words = argument_words(next_arguments)
-    call_sp = (vm_sp-2*len(words)) & 0xffff
-    call_fields = [f"stack{i}" for i in range(len(words))]
-    check(values("far_call", "si", "ss", "sp", *call_fields) == (call_pc+2, stack, call_sp, *words),
-          "Native call site and arguments")
-    entry_fields = [f"stack{i}" for i in range(2+len(words))]
-    check(values(target, "ss", "sp", *entry_fields) == (stack, (call_sp-4) & 0xffff, vm_ip, vm_cs, *words),
-          "Next native entry, return address and arguments")
+    check_call_frame(records["far_call"], records[target], next_arguments, call_pc+2, (stack, vm_sp), (vm_cs, vm_ip))
     args = ", ".join(map(str, arguments))
     next_args = ", ".join(map(str, next_arguments))
     print(f"Verified {IMPORTS[returned][0]}({args}), DX:AX = {result:08X}, slot {slot[0]:04X}:{slot[1]:04X}, "
