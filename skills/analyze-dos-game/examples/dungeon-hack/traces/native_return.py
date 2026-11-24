@@ -20,6 +20,7 @@ IMPORTS = {
     "create_program": ("create_program", 0, 520),
     "set_palette": ("set_palette", 12, 328),
     "envval": ("envval", 24, 136),
+    "draw_bitmap": ("draw_bitmap", 28, 320),
 }
 LITERAL_WIDTH = {0x1d: 1, 0x1e: 2}  # SHTC and INTC
 
@@ -167,6 +168,22 @@ def check_call_frame(call_site, entry, arguments, next_pc, vm_stack, return_to):
           "Next native entry, return address and arguments")
 
 
+def check_argument_transfers(exe, rows, arguments, vm_slot, vm_stack):
+    """Check each 32-bit argument as the VM pushes it onto the native stack, last argument first."""
+    segment, top = vm_slot
+    stack, vm_sp = vm_stack
+    transfers = [r for r in rows if r["point"].startswith("marshal_")]
+    check(len(transfers) == len(arguments), "Native argument transfer count")
+    for i, row in enumerate(transfers):
+        remaining = len(arguments)-i
+        check_instruction(exe, row, "26 FF 75 02 26 FF 35 83 C7 04")
+        check(sample(row, "es", "di", "es_di_dword") ==
+              (segment, (top-4*remaining) & 0xffff, arguments[remaining-1] & 0xffffffff),
+              f"VM slot at event {row['event']}")
+        check(sample(row, "ss", "sp", "cx") == (stack, (vm_sp-4*i) & 0xffff, remaining),
+              f"Native argument transfer {i+1}")
+
+
 def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, arguments, check_tail,
                       next_arguments=(), program_class=None, prefix=None, check_archive=None, expected_order=None):
     exe, index, resource = load_game(game)
@@ -271,19 +288,10 @@ def verify_transition(game, trace, profile, *, returned, next_call, resume_pc, a
             width = LITERAL_WIDTH[opcode]
             value = int.from_bytes(code[pc+1:pc+1+width], "little")
         check_slot(following, depth, value)
-    unsigned_arguments = tuple(arg & 0xffffffff for arg in next_arguments)
     count = len(next_arguments)
-    check_slot(records["call_argc"], count, unsigned_arguments[-1] if count else pointer)
+    check_slot(records["call_argc"], count, (next_arguments[-1] & 0xffffffff) if count else pointer)
     vm_sp, = values("call_argc", "sp")
-    transfers = [r for r in rows if r["point"].startswith("marshal_")]
-    check(len(transfers) == count, "Native argument transfer count")
-    for i, row in enumerate(transfers):
-        remaining = count-i
-        instruction(row["point"], "26 FF 75 02 26 FF 35 83 C7 04")
-        check_slot(row, remaining, unsigned_arguments[remaining-1])
-        check(sample(row, "ss", "sp", "cx") == (stack, (vm_sp-4*i) & 0xffff, remaining),
-              f"Native argument transfer {i+1}")
-
+    check_argument_transfers(exe, rows, next_arguments, slot, (stack, vm_sp))
     check_call_frame(records["far_call"], records[target], next_arguments, call_pc+2, (stack, vm_sp), (vm_cs, vm_ip))
     args = ", ".join(map(str, arguments))
     next_args = ", ".join(map(str, next_arguments))
